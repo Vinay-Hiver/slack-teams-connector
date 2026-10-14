@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as TabsStories from './Tabs.stories'
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+The row of tabs that switches between views of the same content. Clicking a tab shows a small ripple.
+
+## Outlined
+
+Underline tabs on a thin line. The selected tab is bold with a dark underline. Each tab can show a count.
+
+<Canvas of={TabsStories.Outlined} />
+
+## Filled
+
+A pill selector for two or three options. The selected tab is a white pill on a grey track.
+
+<Canvas of={TabsStories.Filled} />

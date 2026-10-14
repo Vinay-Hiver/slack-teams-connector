@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as SidebarStories from './AdminSidebar.stories'
+
+<Meta of={SidebarStories} />
+
+# Admin sidebar
+
+The menu down the left of the admin panel. 240px wide, with a heading, a first item on its own, then groups under small titles.
+
+## Default
+
+The selected item has a light blue background and blue text.
+
+<Canvas of={SidebarStories.Default} />
+
+## Hover
+
+Pointing at an item turns it light grey.
+
+<Canvas of={SidebarStories.Hover} />

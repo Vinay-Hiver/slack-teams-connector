@@ -1,0 +1,40 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/400-italic.css';
+@import '@fontsource/dm-mono/400.css';
+
+.email-preview { --email-font: 'Inter', system-ui, sans-serif; box-sizing: border-box; min-height: 100vh; padding: 45px 24px 24px; background: var(--slateSurfaceWhite); font-family: var(--email-font); color: #242424; }
+.email-preview__banner { margin: 0 0 28px; text-align: center; font: var(--fontWeightMedium) 16px/24px var(--email-font); color: var(--warningBorderDark); }
+.email-preview__subject, .email-preview__message { width: 100%; max-width: 1122px; margin: 0 auto; border: 1px solid var(--slateBorderMild); border-radius: 4px; }
+.email-preview__subject { padding: 11px 10px; font: 600 16px/22px var(--email-font); }
+.email-preview__message { margin-top: 8px; padding: 7px 14px 14px; }
+.email-preview__from { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.email-preview__avatar { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #d2ccf8; color: #3f3682; font-weight: 600; font-size: 15px; }
+.email-preview__meta { display: flex; justify-content: space-between; gap: 20px; padding-left: 52px; margin-top: -4px; font-size: 15px; color: #424242; }
+.email-preview__date { font-size: 13px; }
+
+.email-card { box-sizing: border-box; width: 100%; max-width: 760px; margin: 24px auto 0; border: 1px solid var(--slateBorderLight); border-radius: 20px; overflow: hidden; }
+.email-card__logo { display: flex; align-items: center; justify-content: center; height: 110px; }
+.email-card__rule { display: block; width: 100%; height: 1px; }
+.email-card__body { display: flex; flex-direction: column; gap: 23px; padding: 40px; }
+.email-card__note { padding: 30px; border: 1px solid var(--slateBorderLight); border-radius: 10px; background: var(--slateSurfaceSubtle); font: var(--fontWeightMedium) 16px/26px var(--email-font); color: var(--slateTextBody); white-space: pre-wrap; overflow-wrap: anywhere; }
+.email-card__intro { display: flex; flex-direction: column; gap: 10px; }
+.email-card__heading { margin: 0; font: 600 26.4px/normal var(--email-font); letter-spacing: -0.132px; color: #3d3d3d; }
+.email-card__text { margin: 0; font: 400 16px/26px var(--email-font); color: var(--slateTextSubtle); }
+.email-steps { display: flex; flex-direction: column; gap: 23px; padding: 30px; border: 1px solid var(--slateBorderLight); border-radius: 10px; background: var(--slateSurfaceWhite); }
+.email-steps__rule { display: block; width: 100%; height: 1px; }
+.email-step__head { display: flex; align-items: center; gap: 10px; }
+.email-step__n { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--slateSurfaceSubtle200); color: var(--slateTextBody); font: 600 12px/1 var(--email-font); }
+.email-step__title { margin: 0; font: 600 18px/26.4px var(--email-font); letter-spacing: -0.09px; color: var(--slateTextBody); }
+.email-step__content { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding-left: 32px; }
+.email-step__text { margin: 0; font: 400 14px/normal var(--email-font); letter-spacing: -0.07px; color: var(--slateTextSubtle); }
+.email-step__text--italic { font-style: italic; }
+.email-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 36px; margin-top: 6px; padding: 4px 12px; border-radius: 6px; background: var(--primarySurfaceDefault); color: var(--slateSurfaceWhite); font: 600 14px/20px var(--email-font); text-decoration: none; }
+.email-btn:focus-visible { outline: 2px solid var(--primaryBorderDefault); outline-offset: 2px; }
+.email-chip { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 8px; border: 1px solid var(--slateSurfaceSlate150); border-radius: 4px; background: var(--slateSurfaceSubtle); color: var(--slateTextBody); letter-spacing: -0.07px; }
+.email-chip--mono { font: 400 14px/normal 'DM Mono', ui-monospace, monospace; }
+.email-chip--code { font: 600 18px/normal var(--email-font); letter-spacing: -0.09px; }
+.email-card__privacy { margin: 0; font: 400 12px/normal var(--email-font); color: var(--slateTextSubtle); }
+.email-card__footer { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 20px 40px; border-top: 1px solid var(--slateBorderLight); background: var(--slateSurfaceSubtle); font: 400 12px/normal var(--email-font); color: var(--slateTextSubtle); text-align: center; }
+.email-card__footer p { margin: 0; }

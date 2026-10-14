@@ -1,0 +1,19 @@
+.connect-modal__overlay { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 10px; background: rgba(0, 0, 0, 0.5);  animation: overlay-in var(--motionDuration) var(--motionEase) both; }
+.connect-modal__intro { margin: 0; font: var(--fontWeightRegular) 14px/20px var(--fontFamily); color: var(--slateTextBody); }
+.connect-modal__fields { display: flex; flex-direction: column; gap: 24px; }
+.connect-modal__fields .hot-field { gap: 4px; }
+.connect-modal__fields .hot-field__label { display: flex; align-items: center; gap: 4px; color: var(--slateTextBody); }
+.connect-modal__fields .hot-field:not(.hot-field--error) .hot-field__helper { color: var(--slateIconsSubtle); }
+.connect-modal__fields .hot-field__helper em { font-style: italic; }
+.connect-modal__group { display: flex; flex-direction: column; gap: 12px; }
+.connect-modal__invite { display: flex; flex-direction: column; gap: 12px; }
+.connect-modal__link { display: flex; align-items: center; gap: 4px; align-self: flex-start; padding: 0; border: 0; background: none; color: var(--primarySurfaceDefault); font: var(--fontWeightMedium) 14px/20px var(--fontFamily); cursor: pointer; }
+.connect-modal__actions { display: flex; flex: 1; align-items: center; justify-content: space-between; }
+.connect-modal__buttons { display: flex; gap: 16px; }
+.connect-modal__actions .hot-btn { height: 36px; }
+/* The email tags field starts one line tall and grows as tags wrap */
+.connect-modal__emails .hot-field__box { min-height: 40px; padding: 8px; }
+.connect-modal__emails .hot-field__tags--wrap { row-gap: 6px; }
+.connect-modal__emails .hot-field__tag-input { flex: 1 1 120px; min-width: 120px; }
+
+.connect-modal__overlay > .hot-modal { animation: dissolve-in var(--motionDuration) var(--motionEase) both; }

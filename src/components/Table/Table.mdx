@@ -1,0 +1,26 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as TableStories from './Table.stories'
+
+<Meta of={TableStories} />
+
+# Table
+
+Shows rows of information in columns, with a header row and a thin rounded border. It fills the width of its container.
+
+## Basic
+
+Rows are 64px tall and the header is 48px. A cell can hold text or other components, such as a Switch. Columns can have a width in percent or pixels, and columns without one share the rest equally.
+
+<Canvas of={TableStories.Basic} />
+
+## Hover
+
+Pointing at a row turns it light grey.
+
+<Canvas of={TableStories.Hover} />
+
+## Row actions
+
+On hover, 1 to 4 icon buttons appear at the right end of the row. A divider can set one apart, such as Delete. The tables below show 1, 2, 3 and 4 actions.
+
+<Canvas of={TableStories.RowActions} />

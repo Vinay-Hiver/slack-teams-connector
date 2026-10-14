@@ -1,0 +1,34 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as PanelStories from './RightPanel.stories'
+
+<Meta of={PanelStories} />
+
+# Right panel
+
+The panel on the right of a page, always 320px wide. Every channel uses the same anatomy and only the content changes: a **top section** followed by **sub-sections** that open and close. There are four sub-sections here for now.
+
+## Anatomy
+
+At the very top there is a bar with a tab (the Shared Inbox tab, an icon with a 2px underline when selected). The panel's content starts below it, and only the content scrolls. The top section has a heading (the name of the inbox the conversation belongs to) and a few fields, such as Assignee, Status and Tags. Under it, each sub-section has an icon, a name and an arrow. Inside a sub-section, each row is an icon and a label on the left, some space, and the value on the right. The rows are plain markup built from the Icon and text with colour tokens, not a separate component: the icon and label use the subtle text colour and the value uses the title text colour (or the link colour for a number you can click).
+
+<Canvas of={PanelStories.Anatomy} />
+
+## Open and closed
+
+A closed sub-section shows only its header with an arrow pointing right. An open one shows its fields and the arrow points down. Clicking the header switches between the two, sliding over 250ms with an ease-in-out curve.
+
+<Canvas of={PanelStories.OpenAndClosed} />
+
+## Reordering
+
+Drag a sub-section by its handle (the dots that show on the left when you point at it) to move it up or down. The section follows the pointer folded up, on a white card with a soft shadow, and the others slide out of the way. When you let go it settles into place and opens again if it was open. Clicking the rest of the header still opens or closes it. The top section stays at the top.
+
+## Customize widgets
+
+A "Customize widgets" button sits after the last section. Clicking it opens a small list above the button with the name of every section and a checkbox. Only the ticked sections show in the panel, so unticking Account removes it, and ticking it again brings it back in the same place. The list stays exactly where it opened while you tick and untick sections, even though the button moves up when sections are hidden; it only takes a new place the next time you open it. It closes when you click outside it or press Escape. The names can also be dragged into a new order (point at a row and use the handle on its right), and the sections in the panel follow. All sections are ticked at first.
+
+## Hover
+
+Pointing at a sub-section, open or closed, turns it light grey and shows a drag handle on the left, because the sections can be dragged to a new order from the handle. The closed Account section and the open Contact section below are pinned to show it.
+
+<Canvas of={PanelStories.HoverState} />

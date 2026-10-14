@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as RadioStories from './Radio.stories'
+
+<Meta of={RadioStories} />
+
+# Radio
+
+Lets people choose exactly one option from a short list. Use Checkbox when several can be selected.
+
+## Group
+
+Radios sit in a group with a label and an optional red asterisk. Only one can be selected at a time.
+
+<Canvas of={RadioStories.Group} />
+
+## States
+
+Default, keyboard focus and disabled.
+
+<Canvas of={RadioStories.States} />

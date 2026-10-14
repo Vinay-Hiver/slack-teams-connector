@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as CheckboxStories from './Checkbox.stories'
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+Lets people turn one option on or off, or pick several from a list. Use Radio when only one option can be chosen and Switch for settings that apply straight away.
+
+## Selection
+
+Unchecked, checked, or indeterminate (only some options in a group are selected).
+
+<Canvas of={CheckboxStories.Selection} />
+
+## States
+
+Default, focus, disabled, invalid, and required with a red asterisk.
+
+<Canvas of={CheckboxStories.States} />

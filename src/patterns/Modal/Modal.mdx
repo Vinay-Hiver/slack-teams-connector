@@ -1,0 +1,50 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as ModalStories from './Modal.stories'
+
+<Meta of={ModalStories} />
+
+# Modal
+
+A box that opens over the page to ask for a decision or a bit of input. It has a header with a title and a close button, a white body, and the actions on the right. It comes in widths of 400px and 500px.
+
+## Title
+
+The title can stand on its own or have a small icon before it. Use the icon for serious actions such as deleting or discarding.
+
+<Canvas of={ModalStories.TitleIcon} />
+
+## Confirm
+
+A title, a line of text and two buttons: Cancel and the main action.
+
+<Canvas of={ModalStories.Confirm} />
+
+## Destructive
+
+An icon before the title and a red button, for things that cannot be undone.
+
+<Canvas of={ModalStories.Destructive} />
+
+## With a note
+
+A grey note under the text for extra information.
+
+<Canvas of={ModalStories.WithNote} />
+
+## With an input
+
+<Canvas of={ModalStories.WithInput} />
+
+## With choices
+
+<Canvas of={ModalStories.WithChoices} />
+
+## Delete confirmation
+
+<Canvas of={ModalStories.DeleteConfirm} />
+
+## Centered
+
+No header bar. A big icon, a title, a line of text and one button in the middle. For results such as "Profile updated".
+
+<Canvas of={ModalStories.Centered} />

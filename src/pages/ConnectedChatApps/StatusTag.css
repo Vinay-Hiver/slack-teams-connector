@@ -1,0 +1,4 @@
+.status-tag--invited { background: var(--primarySurfaceSubtle); }
+.status-tag--connected { background: var(--successSurfaceSubtle); }
+.status-tag--expired { background: var(--slateSurfaceSlate150); }
+.status-tag--error { background: var(--errorSurfaceSubtle); color: var(--errorSurfaceDefault); }

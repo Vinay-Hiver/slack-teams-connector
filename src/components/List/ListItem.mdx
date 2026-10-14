@@ -1,0 +1,26 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as ListItemStories from './ListItem.stories'
+
+<Meta of={ListItemStories} />
+
+# List item
+
+One row in a list or menu. It is the building block of Dropdown.
+
+## Left elements
+
+A row can start with an avatar, an icon, a radio or a checkbox.
+
+<Canvas of={ListItemStories.LeftElements} />
+
+## With description
+
+A smaller line of text under the label, with a chevron on the right.
+
+<Canvas of={ListItemStories.WithDescription} />
+
+## States
+
+Hover is grey and pressed is pale blue.
+
+<Canvas of={ListItemStories.States} />

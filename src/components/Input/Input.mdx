@@ -1,0 +1,44 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as InputStories from './Input.stories'
+
+<Meta of={InputStories} />
+
+# Input
+
+A single-line text field with an optional label and helper text. For longer text, use Textarea.
+
+## Sizes
+
+Medium is 40px tall and the default. Small is 32px tall, for dense forms.
+
+<Canvas of={InputStories.Sizes} />
+
+## Prefix, counter and action
+
+A prefix can be an icon or short text such as https://. Search is a ready-made prefix with a search icon. A counter shows the length against a limit. An action sits on the right edge.
+
+<Canvas of={InputStories.Affixes} />
+
+## Tags
+
+Typing and pressing Enter adds a tag. Each tag can be removed.
+
+<Canvas of={InputStories.Tags} />
+
+## Phone
+
+A phone field with a country button (flag, dial code and arrow). The number box only accepts digits, spaces, hyphens and brackets.
+
+<Canvas of={InputStories.Phone} />
+
+## Country list
+
+The country button opens a searchable list of countries. Picking one updates the flag and dial code.
+
+<Canvas of={InputStories.CountryListOpen} />
+
+## States
+
+Hover, focus, error (with a message saying what to fix) and disabled.
+
+<Canvas of={InputStories.States} />

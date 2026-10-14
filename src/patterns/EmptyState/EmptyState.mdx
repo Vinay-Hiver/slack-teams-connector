@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as EmptyStateStories from './EmptyState.stories'
+
+<Meta of={EmptyStateStories} />
+
+# Empty state
+
+What a screen shows when there is nothing to list yet: an icon in a light grey circle, a title, a line of text, and sometimes a button.
+
+## Basic
+
+Icon, title and description, centred in the space it is given.
+
+<Canvas of={EmptyStateStories.Basic} />
+
+## With a button
+
+Some empty states have a main action, such as creating the first item.
+
+<Canvas of={EmptyStateStories.WithAction} />

@@ -1,0 +1,34 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as ButtonStories from './Button.stories'
+
+<Meta of={ButtonStories} />
+
+# Button
+
+The main action control. Use one Primary button per view and the other types for everything else.
+
+## Types
+
+Primary is the main action. Secondary is outlined, for supporting actions. Secondary-filled is a soft grey fill for low-emphasis actions. Ghost has no fill until hovered. Error is for destructive actions like delete. Neutral is dark, for strong actions that are not the main one.
+
+<Canvas of={ButtonStories.Types} />
+
+## Click
+
+Every button shows a small ripple when it is clicked, like the product.
+
+## Sizes
+
+Extra small is 28px tall, small is 32px and medium is 40px.
+
+<Canvas of={ButtonStories.Sizes} />
+
+## Icons
+
+A 16px icon can sit before or after the label, or the button can be icon-only.
+
+<Canvas of={ButtonStories.WithIcons} />
+
+## States
+
+Every type also has hover, pressed and disabled states, shown on the All Variants page. On a secondary button, hovering turns the fill light grey and the border stays the same; pressing looks the same as hovering.

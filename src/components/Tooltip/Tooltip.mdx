@@ -1,0 +1,14 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as TooltipStories from './Tooltip.stories'
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+A short label that appears when someone hovers or focuses an element, to explain what it does. It appears after a short pause of 300ms, so it does not flash while the pointer is just passing by, and then fades in over 200ms. Keep it to a few words.
+
+## Placement
+
+It can appear above, below, left or right of the element.
+
+<Canvas of={TooltipStories.Placements} />

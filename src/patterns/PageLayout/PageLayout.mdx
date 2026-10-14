@@ -1,0 +1,32 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as LayoutStories from './PageLayout.stories'
+
+<Meta of={LayoutStories} />
+
+# Page layout
+
+How a page is put together. Each layout has fixed-width regions and one flexible region for the content. More layouts will be added here as they are built.
+
+## Home page
+
+The main app page, from left to right:
+
+- **Main nav**: always 50px wide.
+- **Sidebar**: 240px wide. It is the Conversations sidebar or the Admin sidebar, depending on where the person is. Both are the same width, so swapping one for the other never moves the content.
+- **Content**: takes all the space that is left, so its width follows the browser. On a 1440px screen it is 830px.
+- **Right panel**: always 320px wide.
+
+The three side regions never shrink. Only the content changes with the browser width, and it scrolls on its own when it is long.
+
+<Canvas of={LayoutStories.HomePage} />
+
+## Admin panel
+
+The admin pages. Same as the home page, except there is no right panel and there is a second column next to the sidebar:
+
+- **Main nav**: 50px wide.
+- **Admin sidebar**: 240px wide.
+- **Sub-nav**: 240px wide. It is not built yet, so a placeholder stands in for it.
+- **Content**: takes all the space that is left. On a 1440px screen it is 910px.
+
+<Canvas of={LayoutStories.AdminPanel} />

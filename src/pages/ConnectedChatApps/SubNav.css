@@ -1,0 +1,9 @@
+.sub-nav { display: flex; flex-direction: column; height: 100%; padding: 0 8px; background: var(--slateSurfaceWhite); box-shadow: inset -1px 0 0 var(--slateBorderLight), inset 1px 0 0 var(--slateBorderLight); font-family: var(--fontFamily); }
+.sub-nav__header { display: flex; align-items: center; gap: 4px; height: 50px; padding: 0 4px 0 6px; }
+.sub-nav__title { flex: 1; min-width: 0; font: var(--fontWeightMedium) 16px/24px var(--fontFamily); color: var(--slateTextTitle); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sub-nav__switch { width: 24px; height: 24px; border-radius: 8px; }
+.sub-nav__list { list-style: none; margin: 0; padding: 0 4px; }
+.sub-nav__item { display: flex; align-items: center; gap: 8px; width: 100%; height: 32px; padding: 0 8px; border: 0; border-radius: 8px; background: transparent; color: var(--slateTextBody); font: var(--fontWeightRegular) 14px/20px var(--fontFamily); text-align: left; cursor: pointer; }
+.sub-nav__item:hover { background: var(--slateSurfaceSubtle); }
+.sub-nav__item[aria-current='page'] { background: var(--primarySurfaceSubtle); color: var(--primarySurfaceDefault); font-weight: var(--fontWeightMedium); }
+.sub-nav__item:focus-visible { outline: 2px solid var(--primaryBorderDefault); outline-offset: -2px; }

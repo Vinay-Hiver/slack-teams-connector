@@ -1,0 +1,27 @@
+@import './tokens/tokens.css';
+@import './tokens/typography.css';
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { font-family: var(--fontFamily); color: var(--slateTextBody); background: var(--slateSurfaceWhite); }
+
+/* Motion: one curve and one duration for overlays, modals and the side sheet */
+:root { --motionDuration: 250ms; --motionEase: cubic-bezier(0.22, 1, 0.36, 1); }
+@keyframes overlay-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes dissolve-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slide-in-right { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { :root { --motionDuration: 1ms; } }
+
+/* Exit: the same motion in reverse. The component adds `is-closing` to its overlay, then removes itself when it ends. */
+@keyframes overlay-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes dissolve-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes slide-out-right { from { transform: translateX(0); } to { transform: translateX(100%); } }
+.is-closing.is-closing { pointer-events: none; animation: overlay-out var(--motionDuration) var(--motionEase) both; }
+.is-closing.is-closing > .hot-modal { animation: dissolve-out var(--motionDuration) var(--motionEase) both; }
+.is-closing.is-closing > .side-sheet { animation: slide-out-right var(--motionDuration) var(--motionEase) both; }
+
+/* Side sheet to modal: the panel dissolves out in 100ms, the overlay stays, then the modal dissolves in in 100ms. */
+.is-handoff.is-handoff { pointer-events: none; animation: none; }
+.is-handoff.is-handoff > .side-sheet { animation: dissolve-out 100ms var(--motionEase) both; }
+.from-sheet.from-sheet { animation: none; }
+.from-sheet.from-sheet > .hot-modal { animation: dissolve-in 100ms var(--motionEase) both; }

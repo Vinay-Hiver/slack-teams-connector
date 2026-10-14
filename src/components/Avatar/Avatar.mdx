@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as AvatarStories from './Avatar.stories'
+
+<Meta of={AvatarStories} />
+
+# Avatar
+
+A round badge with a person's first letter and a small dot that shows whether they are online.
+
+## Sizes
+
+Default is 24px and small is 18px.
+
+<Canvas of={AvatarStories.Sizes} />
+
+## Status
+
+A green dot means online and a grey dot means offline.
+
+<Canvas of={AvatarStories.Statuses} />

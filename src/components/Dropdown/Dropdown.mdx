@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as DropdownStories from './Dropdown.stories'
+
+<Meta of={DropdownStories} />
+
+# Dropdown
+
+The menu panel that opens under a field or button, for choosing from a list. It is the panel only.
+
+## Styles
+
+Five row styles: checkboxes, avatar with a status dot, icon, radios and plain text.
+
+<Canvas of={DropdownStories.Styles} />
+
+## Search and buttons
+
+An optional search box for long lists, and Cancel and Apply buttons when the choice is saved on confirmation.
+
+<Canvas of={DropdownStories.SearchAndButtons} />

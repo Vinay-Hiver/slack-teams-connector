@@ -1,0 +1,5 @@
+.chat-apps__customer { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.chat-apps__name { font: var(--fontWeightRegular) 14px/20px var(--fontFamily); color: var(--slateTextBody); overflow: hidden; text-overflow: ellipsis; }
+.chat-apps__emails { font: var(--fontWeightRegular) 12px/18px var(--fontFamily); color: var(--slateTextSubtle); overflow: hidden; text-overflow: ellipsis; }
+.chat-apps__teams { display: inline-flex; align-items: center; gap: 6px; }
+.chat-apps__warn { display: inline-flex; color: var(--errorSurfaceDefault); }

@@ -1,0 +1,8 @@
+.select-field { position: relative; }
+.select-field .hot-field__box { padding: 0; }
+.select-field__trigger { display: flex; align-items: center; gap: 10px; flex: 1; align-self: stretch; padding: 0 12px; border: 0; background: transparent; color: var(--slateIconsSubtle); font: var(--fontWeightRegular) 14px/20px var(--fontFamily); text-align: left; cursor: pointer; }
+.select-field__trigger > span { flex: 1; min-width: 0; }
+.select-field__placeholder { color: var(--slateTextDisabled); }
+.select-field__value { color: var(--slateTextBody); }
+.select-field__menu { position: absolute; z-index: 10; top: 100%; left: 0; right: 0; margin-top: 4px; }
+.select-field__menu .hot-dropdown { width: 100%; }

@@ -1,0 +1,29 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as SidebarStories from './ConversationsSidebar.stories'
+
+<Meta of={SidebarStories} />
+
+# Conversations sidebar
+
+The menu on the left of the inbox that lists where conversations live. It is 240px wide and fills the height of its container. It has a heading with a search button and a plus button, then groups of rows: My Work and Personal, the inboxes (Chat, Slack, WhatsApp, SMS and Email), and more folders such as Sent and Drafts.
+
+## Default
+
+Each inbox shows the total number of conversations across all its views.
+
+<Canvas of={SidebarStories.Default} />
+
+## Closed and open
+
+Each inbox opens to show its views, and each channel starts with its own: Chat has Unassigned, Assigned to Bot, Mine, All assigned, Tags and Closed; Slack and WhatsApp have Unassigned, Mine, All assigned, Tags, Pending and Closed; SMS has Unassigned, Mine, All assigned, Tags and Closed; Email has Mine, Unassigned, Team, Tickets, Tags and All Views. Each view shows its own count when it has one. The selected view has a light blue background and blue text.
+
+- **Closed:** the total of all its views is shown on the right.
+- **Open:** the total is hidden, since the views show their own counts.
+
+<Canvas of={SidebarStories.ClosedAndOpen} />
+
+## Hover
+
+Pointing at an inbox shows an arrow on the right. When it is closed, the arrow replaces the total and points right. When it is open, it points down. Slack (closed) and Chat inbox 01 (open) are pinned to show it.
+
+<Canvas of={SidebarStories.HoverStates} />

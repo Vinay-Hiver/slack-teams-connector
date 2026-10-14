@@ -1,0 +1,8 @@
+.chat-apps-page { height: 100vh; min-width: 1100px; }
+.chat-apps-page__content { display: flex; flex-direction: column; height: 100%; }
+.chat-apps-page__header { display: flex; align-items: center; justify-content: space-between; flex: none; min-height: 60px; padding: 14px 20px; border-bottom: 1px solid var(--slateBorderLight); }
+.chat-apps-page__title { margin: 0; font: var(--fontWeightMedium) 16px/24px var(--fontFamily); color: var(--slateTextBody); }
+.chat-apps-page__empty { flex: 1; min-height: 0; }
+.chat-apps-page__body { display: flex; flex-direction: column; gap: 16px; padding: 20px; overflow: auto; }
+.chat-apps-page__intro { margin: 0; font: var(--fontWeightRegular) 14px/20px var(--fontFamily); color: var(--slateTextBody); }
+.chat-apps-page__intro strong { font-weight: var(--fontWeightMedium); }

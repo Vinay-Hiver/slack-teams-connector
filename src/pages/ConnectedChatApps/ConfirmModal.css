@@ -1,0 +1,7 @@
+.confirm-modal__overlay { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 10px; background: rgba(0, 0, 0, 0.5);  animation: overlay-in var(--motionDuration) var(--motionEase) both; }
+.confirm-modal__body { display: flex; flex-direction: column; gap: 4px; }
+/* In Figma the modal text is the darker body colour, not the subtle grey */
+.confirm-modal__body .hot-modal__text { color: var(--slateTextBody); }
+.confirm-modal__confirm { min-width: 0; }
+
+.confirm-modal__overlay > .hot-modal { animation: dissolve-in var(--motionDuration) var(--motionEase) both; }

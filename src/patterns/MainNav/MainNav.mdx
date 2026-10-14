@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as NavStories from './MainNav.stories'
+
+<Meta of={NavStories} />
+
+# Main nav
+
+The thin dark bar down the far left of the app. 50px wide, with the Hiver logo, icons, small footer icons and the person's avatar.
+
+## Default
+
+The selected icon sits on a lighter slate square. Each icon shows its name in a tooltip on hover.
+
+<Canvas of={NavStories.Default} />
+
+## Hover
+
+Pointing at an icon darkens its square slightly.
+
+<Canvas of={NavStories.Hover} />

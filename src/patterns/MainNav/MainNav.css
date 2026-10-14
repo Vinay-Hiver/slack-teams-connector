@@ -1,0 +1,46 @@
+/* HOT Design System — Main nav. Values read from the Figma "Main Nav" component; colors use tokens only. */
+.hot-main-nav {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex: none;
+  width: 50px;
+  height: 100%;
+  padding: 0 8px 12px;
+  /* Raw colour copied from the Figma Main Nav (Omni_Master-Components). It is not a token yet. */
+  background: #2e3641;
+}
+.hot-main-nav__top { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.hot-main-nav__logo-cell { display: flex; align-items: center; justify-content: center; box-sizing: border-box; width: 100%; padding: 11px 0 10px; }
+.hot-main-nav__logo { display: block; flex: none; }
+.hot-main-nav__group { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.hot-main-nav__bottom { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+
+.hot-main-nav__item,
+.hot-main-nav__footer-item {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--slateSurfaceSubtle300);
+  cursor: pointer;
+}
+.hot-main-nav__item { width: 28px; height: 28px; }
+.hot-main-nav__footer-item { width: 28px; height: 28px; margin: -2px; } /* same 28px hover box as the top icons, without moving the 16px icons */
+.hot-main-nav__item svg,
+.hot-main-nav__footer-item svg { flex: none; }
+.hot-main-nav__item:is(:hover, [data-force-state='hover']),
+.hot-main-nav__footer-item:is(:hover, [data-force-state='hover']) { background: var(--slateSurfaceDark600); }
+.hot-main-nav__item:focus-visible,
+.hot-main-nav__footer-item:focus-visible { outline: 2px solid var(--slateSurfaceWhite); outline-offset: 1px; }
+.hot-main-nav__item[aria-current='page'] { background: var(--slateSurfaceDark500); color: var(--slateSurfaceWhite); }
+
+/* The avatar here is red with a pale letter, as in Figma. */
+.hot-main-nav__avatar { --avatar-bg: var(--pastelRedBorderDefault); --avatar-letter: var(--slateSurfaceSubtle300); }

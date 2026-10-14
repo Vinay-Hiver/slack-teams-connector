@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as SlaStories from './Sla.stories'
+
+<Meta of={SlaStories} />
+
+# SLA
+
+Shows where the first response time (FRT) or resolution time (RT) of a conversation stands. A small pill and a wider alert bar, in four statuses: upcoming (grey), due (orange), overdue (red) and done (green).
+
+## Pill
+
+A small label with a lightning bolt and FRT or RT.
+
+<Canvas of={SlaStories.PillStatuses} />
+
+## Alert
+
+A bar with the bolt, a message and an arrow. The message reads "First response…" for FRT and "Resolution…" for RT.
+
+<Canvas of={SlaStories.AlertStatuses} />

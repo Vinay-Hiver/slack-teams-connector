@@ -1,0 +1,26 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as TextareaStories from './Textarea.stories'
+
+<Meta of={TextareaStories} />
+
+# Textarea
+
+A multi-line text field, 128px tall by default and resizable. It shares its label, helper text and states with Input.
+
+## States
+
+Default, hover, focus, error and disabled.
+
+<Canvas of={TextareaStories.States} />
+
+## Tags
+
+Typing and pressing Enter adds a tag. The tags wrap onto more lines as they grow.
+
+<Canvas of={TextareaStories.Tags} />
+
+## Tags in each state
+
+The tags field in the same states as above.
+
+<Canvas of={TextareaStories.TagsStates} />

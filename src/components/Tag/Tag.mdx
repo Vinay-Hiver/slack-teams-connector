@@ -1,0 +1,32 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as TagStories from './Tag.stories'
+
+<Meta of={TagStories} />
+
+# Chip / Tag
+
+A small label that marks something with a category or status. Chip and Tag are the same component.
+
+## Basic
+
+The default grey tag.
+
+<Canvas of={TagStories.Basic} />
+
+## With icons
+
+A 14px icon can sit before or after the text.
+
+<Canvas of={TagStories.WithIcons} />
+
+## Colours
+
+Seven pastel colours besides the default grey: yellow, light blue, green, purple, orange, red and violet.
+
+<Canvas of={TagStories.Colours} />
+
+## Removable
+
+A removable tag has a border and a close button, for things people add themselves.
+
+<Canvas of={TagStories.Removable} />

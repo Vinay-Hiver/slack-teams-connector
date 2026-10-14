@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as SwitchStories from './Switch.stories'
+
+<Meta of={SwitchStories} />
+
+# Switch
+
+Turns a setting on or off, and the change applies straight away. Use Checkbox when the choice is saved with a Save button.
+
+## Sizes
+
+Regular is 32 by 16px and large is 40 by 20px.
+
+<Canvas of={SwitchStories.Sizes} />
+
+## With a label
+
+A label sits next to the switch and is optional.
+
+<Canvas of={SwitchStories.WithLabel} />
