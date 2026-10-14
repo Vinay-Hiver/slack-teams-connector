@@ -1,6 +1,6 @@
 /** What the preview tab needs. The page that opens the tab saves it here and the preview tab reads it. */
 export type EmailPreviewData = {
-  /** The name shown in Teams, for example "OpenObserve". */
+  /** The name shown in Teams, for example "OpenObserve Support". */
   displayName: string
   /** The customer the invite is for. */
   customer: string
@@ -21,7 +21,7 @@ export function openEmailPreview(data: EmailPreviewData) {
 }
 
 export function readEmailPreview(): EmailPreviewData {
-  const fallback: EmailPreviewData = { displayName: 'OpenObserve', customer: 'Contoso', sender: 'Amy' }
+  const fallback: EmailPreviewData = { displayName: 'OpenObserve Support', customer: 'Contoso', sender: 'Amy' }
   try {
     const raw = localStorage.getItem(KEY)
     return raw ? { ...fallback, ...JSON.parse(raw) } : fallback

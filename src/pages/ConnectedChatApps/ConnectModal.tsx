@@ -26,7 +26,7 @@ export function ConnectModal({ onClose: closed, onSend: sent }: ConnectModalProp
   const onSend = (invite: InviteDetails) => close(() => sent(invite))
   const [channel, setChannel] = useState('')
   const [customer, setCustomer] = useState('')
-  const [displayName, setDisplayName] = useState('OpenObserve')
+  const [displayName, setDisplayName] = useState('OpenObserve Support')
   const [emails, setEmails] = useState<string[]>([])
   const [showNote, setShowNote] = useState(false)
   const [note, setNote] = useState('')
@@ -41,7 +41,7 @@ export function ConnectModal({ onClose: closed, onSend: sent }: ConnectModalProp
         onClose={onClose}
         actions={
           <div className="connect-modal__actions">
-            <Button variant="secondary" size="md" iconRight={<Icon name="newtab" size={14} />} onClick={() => openEmailPreview({ displayName: displayName.trim() || 'OpenObserve', customer: customer.trim() || 'Contoso', sender: 'Amy', note: note.trim() || undefined })}>Preview email</Button>
+            <Button variant="secondary" size="md" iconRight={<Icon name="newtab" size={14} />} onClick={() => openEmailPreview({ displayName: displayName.trim() || 'OpenObserve Support', customer: customer.trim() || 'Contoso', sender: 'Amy', note: note.trim() || undefined })}>Preview email</Button>
             <div className="connect-modal__buttons">
               <Button variant="secondary" size="md" onClick={onClose}>Cancel</Button>
               <Button variant="primary" size="md" disabled={!canSend} onClick={() => onSend({ channel, customer: customer.trim(), displayName: displayName.trim(), emails, note: note.trim() || undefined })}>Send invite</Button>
@@ -60,7 +60,7 @@ export function ConnectModal({ onClose: closed, onSend: sent }: ConnectModalProp
           </div>
           <Input
             fullWidth label="Display name in Teams" value={displayName} onChange={(e) => setDisplayName(e.target.value)}
-            helperText={<>Your replies are sent as “<em>Amy · {displayName.trim() || 'OpenObserve'}</em>”</>}
+            helperText={<>Your replies are sent as “<em>Amy · {displayName.trim() || 'OpenObserve Support'}</em>”</>}
           />
           <div className="connect-modal__invite">
             <Textarea
