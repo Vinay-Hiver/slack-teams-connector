@@ -104,8 +104,9 @@
 .hot-field--disabled .hot-field__count { color: var(--slateTextDisabled); }
 
 /* Textarea */
-.hot-field--textarea .hot-field__box { align-items: stretch; min-height: 128px; padding: 10px 12px; }
-.hot-field--textarea .hot-field__control { resize: vertical; min-height: 106px; }
+.hot-field--textarea .hot-field__box { align-items: stretch; min-height: 80px; padding: 10px 12px; }
+.hot-field--textarea:not(.hot-field--tags) .hot-field__box { max-height: 100px; } /* the tags version keeps growing with its tags */
+.hot-field--textarea .hot-field__control { resize: vertical; min-height: 58px; max-height: 78px; }
 
 /* ---- Tags input (Figma "Tags" type) ---- */
 .hot-field--tags .hot-field__box { gap: 6px; }

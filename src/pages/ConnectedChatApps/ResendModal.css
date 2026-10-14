@@ -12,8 +12,7 @@
 .resend-modal__fields .hot-field:not(.hot-field--error) .hot-field__helper { color: var(--slateIconsSubtle); }
 .resend-modal__emails .hot-field__box { min-height: 40px; padding: 8px; }
 .resend-modal__emails .hot-field__tag-input { flex: 1 1 120px; min-width: 120px; }
-.resend-modal__note .hot-field__box { min-height: 80px; padding: 10px 8px; }
-.resend-modal__note .hot-field__control { min-height: 58px; }
+.resend-modal__note .hot-field__box { padding: 10px 8px; }
 .resend-modal__actions { display: flex; flex: 1; align-items: center; justify-content: space-between; }
 .resend-modal__buttons { display: flex; gap: 16px; }
 .resend-modal__actions .hot-btn { height: 36px; }
