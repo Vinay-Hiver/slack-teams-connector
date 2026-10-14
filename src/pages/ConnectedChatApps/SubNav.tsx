@@ -1,9 +1,10 @@
+import type { ReactNode } from 'react'
 import { Button } from '../../components/Button'
 import { Icon } from '../../icons'
 import type { IconName } from '../../icons'
 import './SubNav.css'
 
-export type SubNavItem = { id: string; label: string; icon: IconName }
+export type SubNavItem = { id: string; label: string; /** An icon name from the HOT set, or your own 16px element. */ icon: IconName | ReactNode }
 
 type SubNavProps = {
   title: string
@@ -24,7 +25,7 @@ export function SubNav({ title, items, value }: SubNavProps) {
         {items.map((item) => (
           <li key={item.id}>
             <button type="button" className="sub-nav__item" aria-current={item.id === value ? 'page' : undefined}>
-              <Icon name={item.icon} size={16} />
+              {typeof item.icon === 'string' ? <Icon name={item.icon as IconName} size={16} /> : item.icon}
               <span>{item.label}</span>
             </button>
           </li>

@@ -6,6 +6,7 @@ import { navSampleFooterItems, navSampleItems } from '../../patterns/MainNav/sam
 import { AdminSidebar } from '../../patterns/AdminSidebar'
 import { adminSampleSections } from '../../patterns/AdminSidebar/sampleData'
 import { PageLayout } from '../../patterns/PageLayout'
+import chatAppsNavIcon from '../../assets/connected-chat-apps.svg'
 import emptyIcon from '../../assets/chat-apps-empty.svg'
 import { ChatAppsTable } from './ChatAppsTable'
 import { ConfirmModal } from './ConfirmModal'
@@ -25,7 +26,7 @@ const inboxName = 'Support-Slack-Inbox'
 const subNavItems: SubNavItem[] = [
   { id: 'members', label: 'Members', icon: 'user' },
   { id: 'channels', label: 'Slack Channels', icon: 'hashnumber' },
-  { id: 'chat-apps', label: 'Connected Chat Apps', icon: 'conversation' },
+  { id: 'chat-apps', label: 'Connected Chat Apps', icon: <span className="sub-nav__asset-icon" style={{ ['--icon-url' as string]: `url("${chatAppsNavIcon}")` }} aria-hidden="true" /> },
   { id: 'rules', label: 'Conversation Rules', icon: 'massage' },
   { id: 'auto-assignment', label: 'Auto Assignment', icon: 'assigned' },
   { id: 'sla', label: 'SLA', icon: 'sla' },

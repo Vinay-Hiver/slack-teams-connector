@@ -7,3 +7,5 @@
 .sub-nav__item:hover { background: var(--slateSurfaceSubtle); }
 .sub-nav__item[aria-current='page'] { background: var(--primarySurfaceSubtle); color: var(--primarySurfaceDefault); font-weight: var(--fontWeightMedium); }
 .sub-nav__item:focus-visible { outline: 2px solid var(--primaryBorderDefault); outline-offset: -2px; }
+/* An icon that comes from a Figma SVG file: the file is the shape, the text colour fills it, so it follows hover and selected like the others. */
+.sub-nav__asset-icon { display: inline-block; flex: none; width: 16px; height: 16px; background: currentColor; -webkit-mask: var(--icon-url) center / 16px 16px no-repeat; mask: var(--icon-url) center / 16px 16px no-repeat; }
