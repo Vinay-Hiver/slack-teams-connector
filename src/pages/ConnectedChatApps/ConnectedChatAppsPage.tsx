@@ -71,7 +71,7 @@ export function ConnectedChatAppsPage({ initialRows = [], initialModalOpen = fal
           </header>
           {rows.length === 0 ? (
             <div className="chat-apps-page__empty">
-              <EmptyState icon={<img src={emptyIcon} width={24} height={24} alt="" />} title="No Connected Chat Apps yet" description="Connect a chat app to let clients reach you from the chat apps they use" />
+              <EmptyState icon={<img src={emptyIcon} width={24} height={24} alt="" />} title="No Connected Chat Apps yet" description="Connect a chat app to let customers reach you from the chat apps they use" />
             </div>
           ) : (
             <div className="chat-apps-page__body">
