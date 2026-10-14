@@ -1,5 +1,7 @@
 @import './tokens/tokens.css';
 @import './tokens/typography.css';
+/* The real Hanken Grotesk italic. Without it the browser slants the regular font itself, which looks far heavier than Figma. */
+@import '@fontsource/hanken-grotesk/400-italic.css';
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body, #root { height: 100%; margin: 0; }
