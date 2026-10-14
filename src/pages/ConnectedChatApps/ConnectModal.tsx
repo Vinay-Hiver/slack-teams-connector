@@ -52,7 +52,7 @@ export function ConnectModal({ onClose: closed, onSend: sent }: ConnectModalProp
         <p className="connect-modal__intro">An email invite will be sent to the people you add. The channels connect once they accept it in Teams.</p>
         <div className="connect-modal__fields">
           <div className="connect-modal__group">
-            <SelectField label={<>Slack channel <InfoTip label="About Slack channel">The Slack channel this customer's Teams messages are routed to.</InfoTip></>} placeholder="Select a channel" options={slackChannels} value={channel} onChange={setChannel} />
+            <SelectField label={<>Slack channel <InfoTip label="About Slack channel">Messages from Teams land in this channel</InfoTip></>} placeholder="Select a channel" options={slackChannels} value={channel} onChange={setChannel} />
             <Input
               fullWidth label="Customer name" placeholder="e.g. Acme" value={customer} onChange={(e) => setCustomer(e.target.value)}
               helperText={<>Customer messages arrive as <em>“John ({customer.trim() || 'Acme'}) · via Teams”</em></>}
