@@ -19,6 +19,11 @@ export function SelectField({ label, placeholder, options, value, onChange }: Se
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
+  // Put the cursor in the search box as soon as the list opens
+  useEffect(() => {
+    if (open) ref.current?.querySelector<HTMLInputElement>('.hot-dropdown__search input')?.focus()
+  }, [open])
+
   useEffect(() => {
     if (!open) return
     const onDown = (e: MouseEvent) => { if (!ref.current?.contains(e.target as Node)) setOpen(false) }
@@ -38,7 +43,7 @@ export function SelectField({ label, placeholder, options, value, onChange }: Se
       </FormField>
       {open && (
         <div className="select-field__menu">
-          <Dropdown options={options.map((o) => ({ value: o, label: o }))} value={value} onChange={(v) => { onChange(v as string); setOpen(false) }} />
+          <Dropdown searchable searchPlaceholder="Search channels" options={options.map((o) => ({ value: o, label: o }))} value={value} onChange={(v) => { onChange(v as string); setOpen(false) }} />
         </div>
       )}
     </div>

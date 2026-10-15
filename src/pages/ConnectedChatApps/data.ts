@@ -43,7 +43,7 @@ export function summarizeEmails(emails: string[]) {
 
 export const sampleRows: ChatAppRow[] = rawRows.map(({ sentDaysAgo = 0, ...r }) => ({ ...r, emails: summarizeEmails(r.invitees), sentAt: Date.now() - sentDaysAgo * DAY }))
 
-export const slackChannels = ['#it-support', '#tech-channel', '#general', '#sales-escalations']
+export const slackChannels = ['#it-support', '#tech-channel', '#general', '#sales-escalations', '#customer-success', '#billing-queries', '#onboarding', '#engineering-alerts', '#product-feedback', '#partner-support']
 
 /** Whole days since the invite was sent. */
 export const daysSince = (sentAt = Date.now()) => Math.floor((Date.now() - sentAt) / DAY)

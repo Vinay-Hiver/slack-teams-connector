@@ -1,8 +1,12 @@
 .select-field { position: relative; }
-.select-field .hot-field__box { padding: 0; }
+.select-field > .hot-field > .hot-field__box { padding: 0; } /* only the field itself, not the search box inside the list */
 .select-field__trigger { display: flex; align-items: center; gap: 10px; flex: 1; align-self: stretch; padding: 0 12px; border: 0; background: transparent; color: var(--slateIconsSubtle); font: var(--fontWeightRegular) 14px/20px var(--fontFamily); text-align: left; cursor: pointer; }
 .select-field__trigger > span { flex: 1; min-width: 0; }
 .select-field__placeholder { color: var(--slateTextDisabled); }
 .select-field__value { color: var(--slateTextBody); }
 .select-field__menu { position: absolute; z-index: 10; top: 100%; left: 0; right: 0; margin-top: 4px; }
 .select-field__menu .hot-dropdown { width: 100%; }
+/* Inside a form field: the search box and the list start 12px from the left and right edges. Each row has 4px padding on all sides and 4px corners. */
+.select-field__menu .hot-dropdown__search { padding-left: 12px; padding-right: 12px; }
+.select-field__menu .hot-dropdown__list { display: flex; flex-direction: column; gap: 4px; padding-left: 12px; padding-right: 12px; } /* 4px between rows */
+.select-field__menu .hot-list-item { padding: 4px; border-radius: 4px; }
