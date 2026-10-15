@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import arrow from '../../assets/email/arrow.svg'
+import { Icon } from '../../icons'
 import divider from '../../assets/email/divider.svg'
 import stepDivider from '../../assets/email/step-divider.svg'
 import logo from '../../assets/email/oo-logo.png'
@@ -56,7 +56,7 @@ export function EmailPreviewPage() {
             <div className="email-steps">
               <Step n={1} title="Add the Hiver App to Teams">
                 <p className="email-step__text">{displayName} uses Hiver app to receive your messages.</p>
-                <a className="email-btn" href="https://teams.microsoft.com" target="_blank" rel="noreferrer">Add Hiver App to Teams<img src={arrow} width={16} height={16} alt="" /></a>
+                <a className="email-btn" href="https://teams.microsoft.com" target="_blank" rel="noreferrer">Add Hiver App to Teams<Icon name="chevronright" size={16} /></a>
               </Step>
               <img className="email-steps__rule" src={stepDivider} alt="" />
               <Step n={2} title="Connect a Teams channel">

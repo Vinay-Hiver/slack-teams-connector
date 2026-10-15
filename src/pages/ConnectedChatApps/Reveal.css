@@ -1,0 +1,4 @@
+/* Grid rows go from 0fr to 1fr, so the height animates to the content's real height. Same duration and curve as the modals. */
+.reveal { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows var(--motionDuration) var(--motionEase), opacity var(--motionDuration) var(--motionEase); }
+.reveal--open { grid-template-rows: 1fr; opacity: 1; }
+.reveal__inner { min-height: 0; overflow: hidden; }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '../../components/Button'
 import { Textarea } from '../../components/Textarea'
 import { Modal } from '../../patterns/Modal'
@@ -6,6 +6,7 @@ import { Icon } from '../../icons'
 import { openEmailPreview } from '../EmailPreview/previewData'
 import type { ChatAppRow } from './data'
 import { useExit } from './useExit'
+import { Reveal } from './Reveal'
 import { InfoTip } from './InfoTip'
 import './ResendModal.css'
 
@@ -27,6 +28,11 @@ export function ResendModal({ row, onCancel: cancel, onSend: send, fromSheet }: 
   const [emails, setEmails] = useState(row.invitees)
   const [note, setNote] = useState(row.note ?? '')
   const [showNote, setShowNote] = useState(false)
+  const noteRef = useRef<HTMLDivElement>(null)
+  const openNote = () => {
+    setShowNote(true)
+    requestAnimationFrame(() => noteRef.current?.querySelector('textarea')?.focus({ preventScroll: true }))
+  }
   const invalid = emails.some((e) => !isEmail(e))
   const canSend = emails.length > 0 && !invalid
 
@@ -68,17 +74,20 @@ export function ResendModal({ row, onCancel: cancel, onSend: send, fromSheet }: 
               tags={emails} onTagsChange={setEmails} isTagInvalid={(e) => !isEmail(e)}
               error={invalid} helperText={invalid ? `“${emails.find((e) => !isEmail(e))}” isn’t a valid email address` : undefined}
             />
-            {showNote ? (
-              <Textarea
-                className="resend-modal__note" fullWidth placeholder="Add your note here" value={note} onChange={(e) => setNote(e.target.value)}
-                label={<>Invite note <InfoTip label="About invite note">This note appears at the top of the email body</InfoTip></>}
-                helperText={row.note ? 'From your last invite. This note appears at the top of the email body.' : undefined}
-              />
-            ) : (
-              <button type="button" className="resend-modal__link" onClick={() => setShowNote(true)}>
-                <Icon name="add" size={14} />Add a note to the invite
-              </button>
-            )}
+            <div ref={noteRef}>
+              <Reveal open={!showNote}>
+                <button type="button" className="resend-modal__link" onClick={openNote}>
+                  <Icon name="add" size={14} />Add a note to the invite
+                </button>
+              </Reveal>
+              <Reveal open={showNote}>
+                <Textarea
+                  className="resend-modal__note" fullWidth placeholder="Add your note here" value={note} onChange={(e) => setNote(e.target.value)}
+                  label={<>Invite note <InfoTip label="About invite note">This note appears at the top of the email body</InfoTip></>}
+                  helperText={row.note ? 'From your last invite. This note appears at the top of the email body.' : undefined}
+                />
+              </Reveal>
+            </div>
           </div>
         </div>
       </Modal>

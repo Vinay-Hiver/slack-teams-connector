@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { Textarea } from '../../components/Textarea'
@@ -7,6 +7,7 @@ import { Icon } from '../../icons'
 import { openEmailPreview } from '../EmailPreview/previewData'
 import { slackChannels } from './data'
 import { useExit } from './useExit'
+import { Reveal } from './Reveal'
 import { InfoTip } from './InfoTip'
 import { SelectField } from './SelectField'
 import './ConnectModal.css'
@@ -29,6 +30,11 @@ export function ConnectModal({ onClose: closed, onSend: sent }: ConnectModalProp
   const [displayName, setDisplayName] = useState('OpenObserve Support')
   const [emails, setEmails] = useState<string[]>([])
   const [showNote, setShowNote] = useState(false)
+  const noteRef = useRef<HTMLDivElement>(null)
+  const openNote = () => {
+    setShowNote(true)
+    requestAnimationFrame(() => noteRef.current?.querySelector('textarea')?.focus({ preventScroll: true }))
+  }
   const [note, setNote] = useState('')
   const invalid = emails.some((e) => !isEmail(e))
   const canSend = !!channel && !!customer.trim() && !!displayName.trim() && emails.length > 0 && emails.every(isEmail)
@@ -68,13 +74,16 @@ export function ConnectModal({ onClose: closed, onSend: sent }: ConnectModalProp
               tags={emails} onTagsChange={setEmails} isTagInvalid={(e) => !isEmail(e)}
               error={invalid} helperText={invalid ? `“${emails.find((e) => !isEmail(e))}” isn’t a valid email address` : undefined}
             />
-            {showNote ? (
-              <Textarea fullWidth label={<>Invite note <InfoTip label="About invite note">This note appears at the top of the email body</InfoTip></>} placeholder="Add your note here" value={note} onChange={(e) => setNote(e.target.value)} />
-            ) : (
-              <button type="button" className="connect-modal__link" onClick={() => setShowNote(true)}>
-                <Icon name="add" size={14} />Add a note to the invite
-              </button>
-            )}
+            <div ref={noteRef}>
+              <Reveal open={!showNote}>
+                <button type="button" className="connect-modal__link" onClick={openNote}>
+                  <Icon name="add" size={14} />Add a note to the invite
+                </button>
+              </Reveal>
+              <Reveal open={showNote}>
+                <Textarea fullWidth label={<>Invite note <InfoTip label="About invite note">This note appears at the top of the email body</InfoTip></>} placeholder="Add your note here" value={note} onChange={(e) => setNote(e.target.value)} />
+              </Reveal>
+            </div>
           </div>
         </div>
       </Modal>
