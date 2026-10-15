@@ -30,4 +30,3 @@
 .side-sheet__footer .side-sheet__danger { --btn-fg: var(--errorTextSubtle); color: var(--errorTextSubtle); border-color: var(--errorBorderDark); font-weight: var(--fontWeightMedium); }
 
 .side-sheet__more:focus-visible { outline: 2px solid var(--primaryBorderDefault); outline-offset: 1px; }
-.side-sheet__toast-actions { display: flex; align-items: flex-start; gap: 12px; }

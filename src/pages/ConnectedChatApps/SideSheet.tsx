@@ -62,7 +62,6 @@ export function SideSheet({ row, onClose: closed, onAction: acted }: SideSheetPr
   // A button that opens a modal closes the sheet first, so the two are never on screen together.
   // Only the panel dissolves (100ms); the dimmed overlay stays, and the modal takes over from the same overlay.
   const onAction = (action: Parameters<SideSheetProps['onAction']>[0]) => { setHandoff(true); close(() => { closed(); acted(action) }, 100) }
-  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
@@ -74,11 +73,6 @@ export function SideSheet({ row, onClose: closed, onAction: acted }: SideSheetPr
   // A channel the person disconnected themselves (not one the customer removed)
   const disconnectedByYou = status === 'Disconnected' && row.lastAction === 'disconnected'
   const daysLeft = Math.max(1, INVITE_DAYS - daysSince(row.sentAt))
-  const copyLink = () => {
-    navigator.clipboard?.writeText(`https://app.hiver.com/teams-invite/${row.id}`).catch(() => {})
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1500)
-  }
 
   const teamsChannel = status === 'Invited' || status === 'Invite expired' || !row.teamsChannel
     ? <span className="side-sheet__muted">Not connected yet</span>
@@ -114,10 +108,7 @@ export function SideSheet({ row, onClose: closed, onAction: acted }: SideSheetPr
                     : `Invite has been sent to ${row.customer}. The code and the invite link expires in ${INVITE_DAYS} days.`
               }
             >
-              <div className="side-sheet__toast-actions">
-                {daysSince(row.sentAt) >= RESEND_AFTER_DAYS && <Button variant="primary" size="sm" onClick={() => onAction('resend')}>Resend invite</Button>}
-                <Button variant="secondary" size="sm" className="side-sheet__toast-btn" onClick={copyLink}>{copied ? 'Copied' : 'Copy invite link'}</Button>
-              </div>
+              {daysSince(row.sentAt) >= RESEND_AFTER_DAYS && <Button variant="primary" size="sm" onClick={() => onAction('resend')}>Resend invite</Button>}
             </Toast>
           )}
           {status === 'Invite expired' && (
