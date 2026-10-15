@@ -43,7 +43,7 @@ export function SelectField({ label, placeholder, options, value, onChange }: Se
       </FormField>
       {open && (
         <div className="select-field__menu">
-          <Dropdown searchable searchPlaceholder="Search channels" options={options.map((o) => ({ value: o, label: o }))} value={value} onChange={(v) => { onChange(v as string); setOpen(false) }} />
+          <Dropdown searchable searchPlaceholder="Search Slack channels" options={options.map((o) => ({ value: o, label: o }))} value={value} onChange={(v) => { onChange(v as string); setOpen(false) }} />
         </div>
       )}
     </div>
