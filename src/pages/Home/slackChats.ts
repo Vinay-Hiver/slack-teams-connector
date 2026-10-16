@@ -19,8 +19,8 @@ export type SlackConversation = {
 }
 
 export const slackInboxes: { id: SlackInboxId; name: string; channel: string }[] = [
-  { id: 'slack1', name: 'Open Observe Support 01', channel: 'support' },
-  { id: 'slack2', name: 'Open Observe Support 02', channel: 'shipping' },
+  { id: 'slack1', name: 'OpenObserve Support 01', channel: 'support' },
+  { id: 'slack2', name: 'OpenObserve Support 02', channel: 'shipping' },
 ]
 
 const NAMES = [

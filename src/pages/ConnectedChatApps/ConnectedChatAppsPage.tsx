@@ -59,7 +59,7 @@ type Props = {
   inboxId?: string
 }
 
-export function ConnectedChatAppsPage({ initialRows = [], initialModalOpen = false, onBack, inboxTitle = 'Open Observe Support 01', inboxId = 'slack1' }: Props) {
+export function ConnectedChatAppsPage({ initialRows = [], initialModalOpen = false, onBack, inboxTitle = 'OpenObserve Support 01', inboxId = 'slack1' }: Props) {
   const { invite, connection } = useSync()
   const [rows, setRows] = useState(() => (initialRows.length || !invite || (invite.inboxId && invite.inboxId !== inboxId) ? initialRows : [rowFromInvite(invite, connection), ...sampleRows]))
   // When the customer finishes connecting in Teams (the code was entered), their row becomes Connected

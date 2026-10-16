@@ -23,8 +23,8 @@ const inboxTypes: SubNavItem[] = [
 
 export type SlackInbox = { id: string; name: string }
 export const slackInboxes: SlackInbox[] = [
-  { id: '1', name: 'Open Observe Support 01' },
-  { id: '2', name: 'Open Observe Support 02' },
+  { id: '1', name: 'OpenObserve Support 01' },
+  { id: '2', name: 'OpenObserve Support 02' },
 ]
 
 /** The page before the prototype: the list of Slack inboxes. Opening one shows the Connections page. */
