@@ -63,7 +63,7 @@ function ConnectCard({ m, onConnect }: { m: Msg; onConnect: () => void }) {
         <div className="teams__meta"><span className="teams__name">Hiver Omni</span><span className="teams__time">{formatTime(m.ts)}</span></div>
         <div className="teams__card">
           <h3 className="teams__card-title">Connect this channel to your support team</h3>
-          <p className="teams__card-text">After you enter the code your support contact gave you, messages posted in this channel go to their support team and are stored by Hiver. Their replies show up here.</p>
+          <p className="teams__card-text">After you enter the code your support contact gave you, messages posted in this channel go to their support team on Slack and are stored by Hiver. Their replies show up here.</p>
           <input
             className={`teams__code${bad ? ' is-bad' : ''}`} placeholder="Enter code" aria-label="Code" value={m.done ? DEMO_CODE : code} disabled={m.done}
             onChange={(e) => { setCode(e.target.value); setBad(false) }}

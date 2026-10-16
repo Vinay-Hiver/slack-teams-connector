@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '../../components/Button'
 import { EmptyState } from '../../patterns/EmptyState'
 import { MainNav } from '../../patterns/MainNav'
@@ -17,7 +17,8 @@ import { ResendModal } from './ResendModal'
 import { ConnectModal } from './ConnectModal'
 import type { InviteDetails } from './ConnectModal'
 import { sampleRows, summarizeEmails } from './data'
-import { sendInvite as shareInvite } from '../../sync/store'
+import { sendInvite as shareInvite, useSync } from '../../sync/store'
+import type { Connection, Invite } from '../../sync/store'
 import type { ChatAppRow } from './data'
 import { SubNav } from './SubNav'
 import type { SubNavItem } from './SubNav'
@@ -39,6 +40,14 @@ const subNavItems: SubNavItem[] = [
   { id: 'chat-apps', label: 'Connections', icon: maskIcon(teamsBrand16) },
 ]
 
+/** The table row for the invite that was sent from Omni, so the page still shows it after a reload. */
+const rowFromInvite = (invite: Invite, connection: Connection): ChatAppRow => ({
+  id: `invite-${invite.sentAt}`, customer: invite.customer, emails: summarizeEmails(invite.emails), invitees: invite.emails,
+  channel: connection.slackChannel, displayName: invite.displayName, note: invite.note, sentAt: invite.sentAt,
+  status: connection.status === 'connected' ? 'Connected' : 'Invited',
+  teamsChannel: connection.status === 'connected' ? connection.teamsChannel : undefined,
+})
+
 type Props = {
   initialRows?: ChatAppRow[]
   initialModalOpen?: boolean
@@ -51,17 +60,24 @@ type Props = {
 }
 
 export function ConnectedChatAppsPage({ initialRows = [], initialModalOpen = false, onBack, inboxTitle = 'Open Observe Support 01', inboxId = 'slack1' }: Props) {
-  const [rows, setRows] = useState(initialRows)
+  const { invite, connection } = useSync()
+  const [rows, setRows] = useState(() => (initialRows.length || !invite || (invite.inboxId && invite.inboxId !== inboxId) ? initialRows : [rowFromInvite(invite, connection), ...sampleRows]))
+  // When the customer finishes connecting in Teams (the code was entered), their row becomes Connected
+  useEffect(() => {
+    if (connection.status !== 'connected' || !invite) return
+    setRows((all) => all.map((r) => (r.sentAt === invite.sentAt && r.status === 'Invited' ? { ...r, status: 'Connected', teamsChannel: connection.teamsChannel, lastAction: undefined } : r)))
+  }, [connection.status, connection.teamsChannel, invite])
   const [modalOpen, setModalOpen] = useState(initialModalOpen)
   const [confirm, setConfirm] = useState<{ kind: ConfirmKind; row: ChatAppRow }>()
   const [resending, setResending] = useState<ChatAppRow>()
   const filled = rows.length > 0
 
   const sendInvite = (invite: InviteDetails) => {
-    const row: ChatAppRow = { id: crypto.randomUUID(), customer: invite.customer, emails: summarizeEmails(invite.emails), invitees: invite.emails, channel: invite.channel, displayName: invite.displayName, note: invite.note, status: 'Invited', sentAt: Date.now() }
+    const sentAt = Date.now()
+    const row: ChatAppRow = { id: crypto.randomUUID(), customer: invite.customer, emails: summarizeEmails(invite.emails), invitees: invite.emails, channel: invite.channel, displayName: invite.displayName, note: invite.note, status: 'Invited', sentAt }
     // The first invite turns the empty page into the filled one, with the other states alongside.
     // Outlook shows the email and the sign-in screen prefills the address, so the other demo tabs hear about it here.
-    shareInvite({ inboxId, emails: invite.emails, customer: invite.customer, displayName: invite.displayName, sender: 'Amy', note: invite.note, sentAt: Date.now() }, invite.channel)
+    shareInvite({ inboxId, emails: invite.emails, customer: invite.customer, displayName: invite.displayName, sender: 'Amy', note: invite.note, sentAt }, invite.channel)
     setRows((r) => [row, ...(r.length ? r : sampleRows)])
     setModalOpen(false)
   }
