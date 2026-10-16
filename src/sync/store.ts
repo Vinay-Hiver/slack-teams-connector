@@ -42,6 +42,8 @@ const read = () => { try { return localStorage.getItem(KEY) } catch { return nul
 // Opening any page with ?reset clears the demo back to an empty, connected conversation.
 try {
   const params = new URLSearchParams(window.location.search)
+  // Opening the start page (the Slack inboxes list) is the start of the prototype, so it always begins empty
+  if (window.location.pathname === '/' && !params.has('reset')) localStorage.removeItem(KEY)
   if (params.has('reset')) {
     if (params.get('reset') === 'connected') localStorage.setItem(KEY, JSON.stringify(connectedState))
     else localStorage.removeItem(KEY)
