@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { addToTeams, completeConnect, formatTime, groupThreads, sendMessage, useSync } from '../../sync/store'
+import { addToTeams, completeConnect, formatTime, groupThreads, nameFromEmail, sendMessage, useSync } from '../../sync/store'
 import { favicons, useFavicon } from '../../favicon'
 import { HiverMark } from './HiverMark'
 import { TeamsAppModal } from './TeamsAppModal'
@@ -21,7 +21,6 @@ const apps = [
   { name: 'Activity', icon: activityIcon },
 ]
 
-const me = 'John'
 const colors = ['#5b5fc7', '#c4314b', '#0f6cbd', '#038387', '#986f0b']
 const colorFor = (s: string) => colors[[...s].reduce((a, c) => a + c.charCodeAt(0), 0) % colors.length]
 
@@ -115,7 +114,9 @@ function Bubble({ m, small }: { m: Msg; small?: boolean }) {
 /** A dummy Microsoft Teams for the demo. Layout and colours follow the Teams clone repo; the data comes from the shared cross-tab store. */
 export function TeamsPage() {
   useFavicon(favicons.teams)
-  const { messages: all, connection } = useSync()
+  const { messages: all, connection, invite } = useSync()
+  // The person using Teams is whoever the invite went to
+  const me = nameFromEmail(invite?.emails[0])
   const [text, setText] = useState('')
   const [channel, setChannel] = useState<string | undefined>(connection.status === 'connected' ? connection.teamsChannel : connection.status === 'added' ? channels[0] : undefined)
   const messages = all.filter((m) => m.kind !== 'slack-notice' && (m.teamsChannel ?? connection.teamsChannel) === channel)
@@ -164,7 +165,7 @@ export function TeamsPage() {
       <header className="teams__top">
         <span className="teams__brand"><img src={teamsLogo} width={24} height={24} alt="" />Microsoft Teams</span>
         <div className="teams__search">Search</div>
-        <span className="teams__me" aria-label={me}>J</span>
+        <span className="teams__me" aria-label={me}>{me.charAt(0)}</span>
       </header>
       <div className="teams__body">
         <nav className="teams__rail" aria-label="Apps">

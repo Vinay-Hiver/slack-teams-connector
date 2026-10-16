@@ -125,3 +125,9 @@ export function groupThreads(messages: Msg[]) {
   const replies = (id: string) => messages.filter((m) => m.parentId === id)
   return { posts, replies }
 }
+
+/** The Teams user's first name from the address the invite went to: "adam@acme.com" is Adam, "priya.nair@x.com" is Priya. */
+export function nameFromEmail(email?: string) {
+  const first = email?.split('@')[0].split(/[._-]+/).find(Boolean)
+  return first ? first.charAt(0).toUpperCase() + first.slice(1).toLowerCase() : 'John'
+}
