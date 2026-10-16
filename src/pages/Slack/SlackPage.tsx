@@ -31,11 +31,11 @@ function useNow() {
 const when = (ts: number, now: number) => (now - ts < 60000 ? 'Just now' : formatTime(ts))
 
 /**
- * How a message looks in Slack. Teams messages are posted by the Hiver Omni, so they read "John (Acme) · via Teams" with an APP tag (Hiver shows a Teams logo instead).
- * A reply written in Hiver is posted by the Hiver Omni, so it says "Amy" with an APP tag; one written in Slack is just "Amy".
+ * How a message looks in Slack. Teams messages are posted by the Hiver, so they read "John (Acme) · via Teams" with an APP tag (Hiver shows a Teams logo instead).
+ * A reply written in Hiver is posted by the Hiver, so it says "Amy" with an APP tag; one written in Slack is just "Amy".
  */
 const display = (m: Msg, customer: string): { name: string; app?: boolean } =>
-  m.source === 'bot' ? { name: 'Hiver Omni', app: true }
+  m.source === 'bot' ? { name: 'Hiver', app: true }
     : m.source === 'teams' ? { name: `${m.author} (${customer}) · via Teams`, app: true }
     : m.source === 'omni' ? { name: m.author, app: true }
     : { name: m.author }
@@ -104,7 +104,7 @@ function HoverActions({ onReply }: { onReply: () => void }) {
 export function SlackPage() {
   useFavicon(favicons.slack)
   const { messages: all, connection } = useSync()
-  // Only what belongs to the connected Teams channel shows here (not the Hiver Omni's own setup messages)
+  // Only what belongs to the connected Teams channel shows here (not the Hiver's own setup messages)
   const messages = all.filter((m) => (m.source !== 'bot' || m.kind === 'slack-notice') && !/^@hiver\b/i.test(m.text) && (!m.teamsChannel || m.teamsChannel === connection.teamsChannel))
   const now = useNow()
   const [threadId, setThreadId] = useState<string>()

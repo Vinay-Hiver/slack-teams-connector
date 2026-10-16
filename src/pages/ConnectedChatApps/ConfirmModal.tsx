@@ -16,7 +16,7 @@ const copyFor = (kind: ConfirmKind, row: ChatAppRow): Copy => {
         title: `Disconnect Slack channel from ${row.customer}?`,
         body: [
           `Messages will stop syncing between ${row.channel} and their Teams channel ${row.teamsChannel ?? ''}.`.replace(' .', '.'),
-          'All your past conversations stay in Omni, and the Hiver Omni stays in their Teams until they remove it.',
+          'All your past conversations stay in Omni, and the Hiver stays in their Teams until they remove it.',
         ],
         confirm: 'Disconnect channel',
       }

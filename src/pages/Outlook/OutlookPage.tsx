@@ -40,7 +40,7 @@ const initialsOf = (email: string) => {
   return (parts.length > 1 ? parts[0][0] + parts[1][0] : (parts[0] ?? '').slice(0, 2)).toUpperCase()
 }
 
-/** A dummy Outlook (web) for the demo. The invite lands in the inbox; opening it shows the email with "Add Hiver Omni to Teams". */
+/** A dummy Outlook (web) for the demo. The invite lands in the inbox; opening it shows the email with "Add Hiver to Teams". */
 export function OutlookPage() {
   const { invite } = useSync()
   const [open, setOpen] = useState<string>()

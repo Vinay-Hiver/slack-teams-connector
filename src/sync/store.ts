@@ -9,10 +9,10 @@ export type Source = 'teams' | 'slack' | 'omni' | 'bot'
 
 /** `parentId` is set on a thread reply and points at the post it answers. `teamsChannel` is the Teams channel the message belongs to. */
 export type Msg = { id: string; source: Source; author: string; text: string; ts: number; parentId?: string; teamsChannel?: string
-  /** Messages from the Hiver Omni in Teams: the code card, and the "connected" confirmation. `done` is set once the code was entered. */
+  /** Messages from the Hiver in Teams: the code card, and the "connected" confirmation. `done` is set once the code was entered. */
   kind?: 'connect-card' | 'connected' | 'slack-notice'; done?: boolean }
 
-/** The demo's setup flow: no invite yet, invite sent from Omni, Hiver Omni added in Teams, channel connected with the code. */
+/** The demo's setup flow: no invite yet, invite sent from Omni, Hiver added in Teams, channel connected with the code. */
 export type Connection = {
   status: 'none' | 'invited' | 'added' | 'connected'
   customer: string
@@ -93,9 +93,9 @@ export function completeConnect(cardId: string, teamsChannel: string) {
   const card = latest.messages.find((m) => m.id === cardId)
   if (!card) return
   const messages: Msg[] = latest.messages.map((m) => (m.id === cardId ? { ...m, done: true } : m))
-  messages.push({ id: crypto.randomUUID(), source: 'bot', author: 'Hiver Omni', text: 'Connected', ts: Date.now(), parentId: card.parentId, teamsChannel, kind: 'connected' })
-  // The Slack channel hears about it as a new message from the Hiver Omni
-  messages.push({ id: crypto.randomUUID(), source: 'bot', author: 'Hiver Omni', text: `${latest.connection.customer}'s "${teamsChannel}" Teams channel was connected to this Slack channel`, ts: Date.now(), teamsChannel, kind: 'slack-notice' })
+  messages.push({ id: crypto.randomUUID(), source: 'bot', author: 'Hiver', text: 'Connected', ts: Date.now(), parentId: card.parentId, teamsChannel, kind: 'connected' })
+  // The Slack channel hears about it as a new message from the Hiver
+  messages.push({ id: crypto.randomUUID(), source: 'bot', author: 'Hiver', text: `${latest.connection.customer}'s "${teamsChannel}" Teams channel was connected to this Slack channel`, ts: Date.now(), teamsChannel, kind: 'slack-notice' })
   commit({ ...latest, messages, connection: { ...latest.connection, status: 'connected', teamsChannel } })
 }
 
@@ -109,7 +109,7 @@ export function sendInvite(invite: Invite, slackChannel: string) {
   commit({ messages: [], invite, connection: { status: 'invited', customer: invite.customer, slackChannel, teamsChannel: '' } })
 }
 
-/** The person pressed ADD on the Hiver Omni in Teams. */
+/** The person pressed ADD on the Hiver in Teams. */
 export function addToTeams() {
   const latest = parse(read())
   if (latest.connection.status === 'invited') commit({ ...latest, connection: { ...latest.connection, status: 'added' } })

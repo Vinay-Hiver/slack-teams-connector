@@ -1,4 +1,4 @@
-/** The Hiver hexagon mark, used for the Hiver Omni in Teams. */
+/** The Hiver hexagon mark, used for the Hiver in Teams. */
 export function HiverMark({ width = 40 }: { width?: number }) {
   return (
     <svg width={width} height={width * 1.12} viewBox="0 0 24 26.875" fill="none" aria-hidden="true">

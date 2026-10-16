@@ -32,8 +32,8 @@ const rawRows: (Omit<ChatAppRow, 'emails' | 'sentAt'> & { sentDaysAgo?: number }
   { id: '1', customer: 'Northwind', invitees: ['hello@northwind.io', 'alex.morgan@northwind.io'], channel: '#it-support', displayName: 'OpenObserve', status: 'Invited', sentDaysAgo: 5 },
   { id: '2', customer: 'Brightly', invitees: ['contact@brightly.co', 'sales@brightly.co'], channel: '#it-support', displayName: 'OpenObserve', teamsChannel: 'OO-IT-Support', status: 'Connected' },
   { id: '3', customer: 'Lumen', invitees: ['priya.nair@lumen.io', 'david.chen@lumen.io', 'sara.lopez@lumen.io', 'omar.hassan@lumen.io', 'emma.wright@lumen.io'], channel: '#tech-channel', displayName: 'OpenObserve', status: 'Invite expired' },
-  { id: '4', customer: 'Vertex', invitees: ['jordan.lee@vertex.com', 'maria.silva@vertex.com', 'tom.baker@vertex.com'], channel: '#tech-channel', displayName: 'OpenObserve', note: 'Hello Meghan, add Hiver Omni to your Teams using these steps.', teamsChannel: 'OO-IT-Support', status: 'Invite revoked' },
-  { id: '5', customer: 'Orbit', invitees: ['support@orbit.dev', 'ravi.shah@orbit.dev', 'nina.petrov@orbit.dev'], channel: '#tech-channel', displayName: 'OpenObserve Support', note: 'Hello Meghan, add Hiver Omni to your Teams using these steps.', teamsChannel: 'OO-IT-Support', status: 'Disconnected' },
+  { id: '4', customer: 'Vertex', invitees: ['jordan.lee@vertex.com', 'maria.silva@vertex.com', 'tom.baker@vertex.com'], channel: '#tech-channel', displayName: 'OpenObserve', note: 'Hello Meghan, add Hiver to your Teams using these steps.', teamsChannel: 'OO-IT-Support', status: 'Invite revoked' },
+  { id: '5', customer: 'Orbit', invitees: ['support@orbit.dev', 'ravi.shah@orbit.dev', 'nina.petrov@orbit.dev'], channel: '#tech-channel', displayName: 'OpenObserve Support', note: 'Hello Meghan, add Hiver to your Teams using these steps.', teamsChannel: 'OO-IT-Support', status: 'Disconnected' },
 ]
 
 /** The text under the customer name: up to two emails, or the first and a count. */
