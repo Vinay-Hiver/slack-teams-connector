@@ -15,12 +15,12 @@ import { navigate, usePath } from './router'
  *   /                 the Slack inboxes list in Admin Panel. Opening an inbox goes to /inbox-1 or /inbox-2
  *   /inbox-1, /inbox-2  Connections for that inbox: empty, "Setup" opens the invite modal
  *   /home             the Hiver Conversations home, with the Slack inboxes and their chats
- *   /outlook          the dummy Outlook: the invite lands here and "Add Hiver App to Teams" opens /teams/signin
+ *   /outlook          the dummy Outlook: the invite lands here and "Add Hiver Omni to Teams" opens /teams/signin
  *   /teams/signin     the dummy Microsoft sign-in, Next goes to /teams
- *   /teams            the dummy Teams, with the Hiver App dialog until it is added
+ *   /teams            the dummy Teams, with the Hiver Omni dialog until it is added
  *   /slack            the dummy Slack
  * Extras for rehearsing: /connect (invite modal already open), /filled (Connections with sample rows),
- * /teams/app (the Hiver App dialog on its own), /preview-email (the invite email on its own).
+ * /teams/app (the Hiver Omni dialog on its own), /preview-email (the invite email on its own).
  * Add ?reset to any address to clear the demo's shared state.
  */
 export default function App() {

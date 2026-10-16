@@ -26,11 +26,11 @@ const colorFor = (s: string) => colors[[...s].reduce((a, c) => a + c.charCodeAt(
 
 const channels = ['General', 'external-support', 'IT announcements', 'Helpdesk', 'Network ops']
 
-/** What the @ menu offers: the Hiver App first, then a team and the channels, like the Teams suggestions list. */
+/** What the @ menu offers: the Hiver Omni first, then a team and the channels, like the Teams suggestions list. */
 type Suggestion = { id: string; name: string; sub: string; kind: 'app' | 'team' | 'channel' }
 const suggestionsFor = (query: string, team: string): Suggestion[] => {
   const all: Suggestion[] = [
-    { id: 'hiver', name: 'Hiver App', sub: 'Connects a Teams channel to a support team on Slack', kind: 'app' },
+    { id: 'hiver', name: 'Hiver Omni', sub: 'Connects a Teams channel to a support team on Slack', kind: 'app' },
     { id: 'team', name: team, sub: 'Team', kind: 'team' },
     ...channels.map((c) => ({ id: c, name: c, sub: 'Channel', kind: 'channel' as const })),
   ]
@@ -40,17 +40,17 @@ const suggestionsFor = (query: string, team: string): Suggestion[] => {
 
 const nameFor = (m: Msg) => (m.source === 'teams' ? m.author : `${m.author} · OpenObserve`)
 
-/** Message text with "@Hiver App" shown as a mention. */
-const renderText = (t: string) => t.split(/(@Hiver App)/g).map((part, i) => (part === '@Hiver App' ? <span key={i} className="teams__mention">{part}</span> : part))
+/** Message text with "@Hiver Omni" shown as a mention. */
+const renderText = (t: string) => t.split(/(@Hiver Omni)/g).map((part, i) => (part === '@Hiver Omni' ? <span key={i} className="teams__mention">{part}</span> : part))
 
 const DEMO_CODE = '123456'
 
-/** The Hiver App's avatar: the Hiver mark on a white tile. */
+/** The Hiver Omni's avatar: the Hiver mark on a white tile. */
 const BotAvatar = ({ small }: { small?: boolean }) => (
   <span className={`teams__bot-avatar${small ? ' teams__bot-avatar--sm' : ''}`}><HiverMark width={small ? 12 : 18} /></span>
 )
 
-/** The Hiver App asking for the code. Any other code is rejected; the demo code is always 123456. */
+/** The Hiver Omni asking for the code. Any other code is rejected; the demo code is always 123456. */
 function ConnectCard({ m, onConnect }: { m: Msg; onConnect: () => void }) {
   const [code, setCode] = useState('')
   const [bad, setBad] = useState(false)
@@ -60,7 +60,7 @@ function ConnectCard({ m, onConnect }: { m: Msg; onConnect: () => void }) {
     <div className="teams__bot">
       <BotAvatar />
       <div className="teams__bot-main">
-        <div className="teams__meta"><span className="teams__name">Hiver App</span><span className="teams__time">{formatTime(m.ts)}</span></div>
+        <div className="teams__meta"><span className="teams__name">Hiver Omni</span><span className="teams__time">{formatTime(m.ts)}</span></div>
         <div className="teams__card">
           <h3 className="teams__card-title">Connect this channel to your support team</h3>
           <p className="teams__card-text">After you enter the code your support contact gave you, messages posted in this channel go to their support team and are stored by Hiver. Their replies show up here.</p>
@@ -83,7 +83,7 @@ function ConnectCard({ m, onConnect }: { m: Msg; onConnect: () => void }) {
   )
 }
 
-/** The Hiver App confirming the connection. It follows the card, so it has no avatar or name of its own. */
+/** The Hiver Omni confirming the connection. It follows the card, so it has no avatar or name of its own. */
 function ConnectedNote({ slackChannel }: { slackChannel: string }) {
   return (
     <div className="teams__bot teams__bot--follow">
@@ -133,15 +133,15 @@ export function TeamsPage() {
   useEffect(() => { end.current?.scrollIntoView({ block: 'end' }) }, [posts.length])
   useEffect(() => { threadEnd.current?.scrollIntoView({ block: 'end' }) }, [threadReplies.length, threadId])
 
-  // "@Hiver connect" typed by hand counts too, not only "@Hiver App connect" picked from the flyout
-  const isConnect = (t: string) => /^@hiver(\s+app)?\s+connect\b/i.test(t.trim())
+  // "@Hiver connect" typed by hand counts too (also "@Hiver App connect"), not only "@Hiver Omni connect" picked from the flyout
+  const isConnect = (t: string) => /^@hiver(\s+(app|omni))?\s+connect\b/i.test(t.trim())
   const send = () => {
     if (!channel) return
-    const body = isConnect(text) ? text.trim().replace(/^@hiver(\s+app)?/i, '@Hiver App') : text
+    const body = isConnect(text) ? text.trim().replace(/^@hiver(\s+(app|omni))?/i, '@Hiver Omni') : text
     const id = sendMessage('teams', me, body, undefined, channel)
     // A second later the app answers in a thread, asking for the code. This does not depend on how the person got here.
     if (id && isConnect(text)) {
-      setTimeout(() => sendMessage('bot', 'Hiver App', 'Connect this channel to your support team', id, channel, { kind: 'connect-card' }), 1000)
+      setTimeout(() => sendMessage('bot', 'Hiver Omni', 'Connect this channel to your support team', id, channel, { kind: 'connect-card' }), 1000)
     }
     setText('')
   }

@@ -12,7 +12,7 @@ const COLORS = ['#7b8bd4', '#d96d71', '#caaed1', '#98d2c5', '#e0b83a', '#8b7fd4'
 export const colorOf = (s: string) => COLORS[[...s].reduce((a, c) => a + c.charCodeAt(0), 0) % COLORS.length]
 export const stamp = (ts: number) => new Date(ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })
 
-/** The messages that belong to the connected channel, without the Hiver App's own setup messages. Shared with the conversation list. */
+/** The messages that belong to the connected channel, without the Hiver Omni's own setup messages. Shared with the conversation list. */
 export const liveMessages = (all: Msg[], teamsChannel: string) =>
   all.filter((m) => m.source !== 'bot' && !/^@hiver\b/i.test(m.text) && m.teamsChannel === teamsChannel).sort((a, b) => a.ts - b.ts)
 

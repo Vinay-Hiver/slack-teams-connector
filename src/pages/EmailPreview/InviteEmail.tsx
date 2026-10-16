@@ -19,7 +19,7 @@ function Step({ n, title, children }: { n: number; title: string; children: Reac
 }
 
 export type InviteEmailProps = EmailPreviewData & {
-  /** Where "Add Hiver App to Teams" goes. */
+  /** Where "Add Hiver Omni to Teams" goes. */
   addToTeamsHref?: string
   /** The time shown in the expiry line. Defaults to now. */
   sentAt?: Date
@@ -39,14 +39,14 @@ export function InviteEmail({ displayName, customer, note, addToTeamsHref = 'htt
               <p className="email-card__text">Hi there, {displayName} wants to support {customer} directly in your Teams. Connect a channel once, and messages you post there go straight to {displayName}’s support team.</p>
             </div>
             <div className="email-steps">
-              <Step n={1} title="Add the Hiver App to Teams">
-                <p className="email-step__text">{displayName} uses Hiver app to receive your messages.</p>
-                <a className="email-btn" href={addToTeamsHref} target="_blank" rel="noreferrer">Add Hiver App to Teams<Icon name="chevronright" size={16} /></a>
+              <Step n={1} title="Add the Hiver Omni to Teams">
+                <p className="email-step__text">{displayName} uses Hiver Omni to receive your messages.</p>
+                <a className="email-btn" href={addToTeamsHref} target="_blank" rel="noreferrer">Add Hiver Omni to Teams<Icon name="chevronright" size={16} /></a>
               </Step>
               <img className="email-steps__rule" src={stepDivider} alt="" />
               <Step n={2} title="Connect a Teams channel">
                 <p className="email-step__text">Open the Teams channel you want to use and send:</p>
-                <code className="email-chip email-chip--mono">@Hiver App connect</code>
+                <code className="email-chip email-chip--mono">@Hiver Omni connect</code>
               </Step>
               <img className="email-steps__rule" src={stepDivider} alt="" />
               <Step n={3} title="Enter this code">

@@ -71,7 +71,7 @@
 .teams__send-to span { display: inline-flex; align-items: center; gap: 4px; color: var(--t-brand); font-weight: 600; }
 .teams__thread-row { display: flex; align-items: flex-end; gap: 8px; }
 
-/* The Hiver App dialog over the page until the app is added */
+/* The Hiver Omni dialog over the page until the app is added */
 .teams__overlay { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; background: rgba(0,0,0,0.6); }
 
 .teams__empty { margin: auto; font-size: 14px; color: #616161; }
@@ -90,7 +90,7 @@
 .teams__suggest-name { font-size: 14px; line-height: 20px; color: #242424; }
 .teams__suggest-sub { font-size: 12px; line-height: 16px; color: #616161; }
 
-/* In the box the text is drawn by a mirror layer, so "@Hiver App" can be blue; the real textarea on top keeps the caret and typing */
+/* In the box the text is drawn by a mirror layer, so "@Hiver Omni" can be blue; the real textarea on top keeps the caret and typing */
 .teams__field { position: relative; flex: 1; min-width: 0; }
 .teams__mirror, .teams__input--mention { box-sizing: border-box; width: 100%; padding: 0; font-family: inherit; font-size: 14px; line-height: 20px; white-space: pre-wrap; overflow-wrap: anywhere; }
 .teams__mirror { position: absolute; inset: 0; height: 40px; overflow: hidden; pointer-events: none; color: #242424; }
@@ -98,7 +98,7 @@
 .teams__input--mention::placeholder { color: #616161; }
 .teams__mirror .teams__mention { font-weight: 400; } /* same width as the textarea text, so the caret lines up */
 
-/* The Hiver App's messages in a thread: a card with the code box, then a confirmation */
+/* The Hiver Omni's messages in a thread: a card with the code box, then a confirmation */
 .teams__bot { display: flex; align-items: flex-start; gap: 10px; }
 .teams__bot-avatar { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 32px; height: 32px; border-radius: 6px; background: #fff; box-shadow: 0 0 0 1px #d1d1d1; }
 .teams__bot-avatar--sm { width: 20px; height: 20px; border-radius: 4px; }

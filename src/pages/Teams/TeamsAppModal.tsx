@@ -16,7 +16,7 @@ const stats = [
 
 const slides = [
   { title: <>Answer customers <strong>right from Teams</strong></>, text: 'Messages from your customers land in a Teams channel and your support team replies from Slack or Omni.' },
-  { title: <>Connect a channel <strong>in one step</strong></>, text: 'Add the bot, send “@Hiver App connect” in the channel and enter your code.' },
+  { title: <>Connect a channel <strong>in one step</strong></>, text: 'Add the bot, send “@Hiver Omni connect” in the channel and enter your code.' },
 ]
 
 const Chevron = ({ dir }: { dir: 'left' | 'right' }) => (
@@ -25,7 +25,7 @@ const Chevron = ({ dir }: { dir: 'left' | 'right' }) => (
   </svg>
 )
 
-/** The Teams app details dialog for the Hiver App, as it opens from the Teams Apps page. Dark, like Teams in dark mode. */
+/** The Teams app details dialog for the Hiver Omni, as it opens from the Teams Apps page. Dark, like Teams in dark mode. */
 export function TeamsAppModal({ onClose, onAdd }: Props) {
   const [slide, setSlide] = useState(0)
   return (
@@ -33,7 +33,7 @@ export function TeamsAppModal({ onClose, onAdd }: Props) {
       <header className="tam__head">
         <span className="tam__icon"><HiverMark /></span>
         <div className="tam__titles">
-          <h2 className="tam__title" id="tam-title">Hiver App</h2>
+          <h2 className="tam__title" id="tam-title">Hiver Omni</h2>
           <span className="tam__by">Hiver</span>
           <div className="tam__actions">
             <button type="button" className="tam__btn tam__btn--primary" onClick={onAdd}>Add</button>
@@ -73,7 +73,7 @@ export function TeamsAppModal({ onClose, onAdd }: Props) {
       </div>
 
       <footer className="tam__foot">
-        By using Hiver App, you agree to the <a href="#privacy">privacy policy</a>, <a href="#terms">terms of use</a>, and <a href="#permissions">permissions</a>.
+        By using Hiver Omni, you agree to the <a href="#privacy">privacy policy</a>, <a href="#terms">terms of use</a>, and <a href="#permissions">permissions</a>.
       </footer>
     </div>
   )
