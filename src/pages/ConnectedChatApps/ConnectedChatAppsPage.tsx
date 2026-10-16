@@ -24,8 +24,6 @@ import { SubNav } from './SubNav'
 import type { SubNavItem } from './SubNav'
 import './ConnectedChatAppsPage.css'
 
-const inboxName = 'Slack-Inbox-Name'
-
 const maskIcon = (url: string) => <span className="sub-nav__asset-icon" style={{ ['--icon-url' as string]: `url("${url}")` }} aria-hidden="true" />
 
 /** The sub-nav is the same before and after the first invite: the page is "Connections", last in the list. */
@@ -108,7 +106,6 @@ export function ConnectedChatAppsPage({ initialRows = [], initialModalOpen = fal
             </div>
           ) : (
             <div className="chat-apps-page__body">
-              <p className="chat-apps-page__intro">Customers on other chat apps can reach this <strong>[{inboxName}]</strong> inbox from where they work.</p>
               <ChatAppsTable rows={rows} onAction={onRowAction} />
             </div>
           )}
