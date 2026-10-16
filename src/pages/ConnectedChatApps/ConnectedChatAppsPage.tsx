@@ -7,7 +7,6 @@ import { AdminSidebar } from '../../patterns/AdminSidebar'
 import { adminSampleSections } from '../../patterns/AdminSidebar/sampleData'
 import { goToNav } from '../navigation'
 import { PageLayout } from '../../patterns/PageLayout'
-import chatAppsNavIcon from '../../assets/connected-chat-apps.svg'
 import teamsBrand16 from '../../assets/brand-teams-16.svg'
 import teamsBrand24 from '../../assets/brand-teams-24.svg'
 import { ChatAppsTable } from './ChatAppsTable'
@@ -28,23 +27,17 @@ const inboxName = 'Slack-Inbox-Name'
 
 const maskIcon = (url: string) => <span className="sub-nav__asset-icon" style={{ ['--icon-url' as string]: `url("${url}")` }} aria-hidden="true" />
 
-/** Before anything is connected the page is "Connections" and sits after CSAT. Once there are connections it becomes "Connected Chat Apps", after Slack Channels. */
-const subNavItems = (filled: boolean): SubNavItem[] => {
-  const page: SubNavItem = filled
-    ? { id: 'chat-apps', label: 'Connected Chat Apps', icon: maskIcon(chatAppsNavIcon) }
-    : { id: 'chat-apps', label: 'Connections', icon: maskIcon(teamsBrand16) }
-  const items: SubNavItem[] = [
-    { id: 'members', label: 'Members', icon: 'user' },
-    { id: 'channels', label: 'Slack Channels', icon: 'hashnumber' },
-    { id: 'rules', label: 'Conversation Rules', icon: 'massage' },
-    { id: 'auto-assignment', label: 'Auto Assignment', icon: 'assigned' },
-    { id: 'sla', label: 'SLA', icon: 'sla' },
-    { id: 'custom-fields', label: 'Custom Fields', icon: 'clipbord' },
-    { id: 'csat', label: 'CSAT', icon: 'csat' },
-  ]
-  items.splice(filled ? 2 : items.length, 0, page)
-  return items
-}
+/** The sub-nav is the same before and after the first invite: the page is "Connections", last in the list. */
+const subNavItems: SubNavItem[] = [
+  { id: 'members', label: 'Members', icon: 'user' },
+  { id: 'channels', label: 'Slack Channels', icon: 'hashnumber' },
+  { id: 'rules', label: 'Conversation Rules', icon: 'massage' },
+  { id: 'auto-assignment', label: 'Auto Assignment', icon: 'assigned' },
+  { id: 'sla', label: 'SLA', icon: 'sla' },
+  { id: 'custom-fields', label: 'Custom Fields', icon: 'clipbord' },
+  { id: 'csat', label: 'CSAT', icon: 'csat' },
+  { id: 'chat-apps', label: 'Connections', icon: maskIcon(teamsBrand16) },
+]
 
 type Props = {
   initialRows?: ChatAppRow[]
@@ -81,12 +74,12 @@ export function ConnectedChatAppsPage({ initialRows = [], initialModalOpen = fal
         variant="admin"
         nav={<MainNav items={navSampleItems} footerItems={navSampleFooterItems} value="admin" onChange={goToNav} user={{ initial: 'A', name: 'Amy' }} />}
         sidebar={<AdminSidebar sections={adminSampleSections} value="shared-inbox" />}
-        subNav={<SubNav title={inboxTitle} items={subNavItems(filled)} value="chat-apps" onBack={onBack} />}
+        subNav={<SubNav title={inboxTitle} items={subNavItems} value="chat-apps" onBack={onBack} />}
       >
         <div className="chat-apps-page__content">
           <header className="chat-apps-page__header">
-            <h1 className="chat-apps-page__title">{filled ? 'Connected Chat Apps' : 'Connections'}</h1>
-            {filled && <Button variant="primary" size="sm" onClick={() => setModalOpen(true)}>Connect an app</Button>}
+            <h1 className="chat-apps-page__title">Connections</h1>
+            {filled && <Button variant="primary" size="sm" onClick={() => setModalOpen(true)}>New connection</Button>}
           </header>
           {!filled ? (
             <div className="chat-apps-page__empty">
