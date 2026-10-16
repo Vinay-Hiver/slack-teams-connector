@@ -16,6 +16,8 @@
 .hot-modal__heading { display: flex; align-items: center; gap: 2px; min-width: 0; }
 .hot-modal__icon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 32px; height: 32px; border-radius: 6px; color: var(--slateTextBody); }
 .hot-modal__title { margin: 0; font: var(--fontWeightMedium) 16px/24px var(--fontFamily); color: var(--slateTextBody); }
+/* Header accessory (for example a step progress): sits next to the close button with 20px between them */
+.hot-modal__accessory { display: flex; align-items: center; margin-left: auto; padding-right: 20px; }
 /* The close button is the ghost icon Button. It is pulled in so the header stays 48px, and keeps the lighter icon colour. */
 .hot-modal__close { --btn-fg: var(--slateTextSubtle); margin: -7px; }
 .hot-modal__close:focus-visible { outline: 2px solid var(--primaryBorderDefault); outline-offset: 2px; }

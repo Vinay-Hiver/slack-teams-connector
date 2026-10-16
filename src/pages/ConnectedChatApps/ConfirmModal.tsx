@@ -40,18 +40,15 @@ type ConfirmModalProps = {
   row: ChatAppRow
   onCancel: () => void
   onConfirm: () => void
-  /** Opened from the side sheet: the overlay is already up, so only the modal dissolves in (100ms). */
-  fromSheet?: boolean
 }
 
 /** The "are you sure?" modal for disconnecting, revoking and removing. Cancel is white and the confirm button is the dark red. */
-export function ConfirmModal({ kind, row, onCancel: cancel, onConfirm: confirmed, fromSheet }: ConfirmModalProps) {
+export function ConfirmModal({ kind, row, onCancel: cancel, onConfirm: confirmed }: ConfirmModalProps) {
   const { closing, close } = useExit()
   const onCancel = () => close(cancel)
   const onConfirm = () => close(confirmed)
   const { title, body, confirm } = copyFor(kind, row)
 
-  // Esc closes only this modal, not the side sheet underneath it.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') { e.stopImmediatePropagation(); onCancel() } }
     document.addEventListener('keydown', onKey, true)
@@ -59,7 +56,7 @@ export function ConfirmModal({ kind, row, onCancel: cancel, onConfirm: confirmed
   })
 
   return (
-    <div className={`confirm-modal__overlay${closing ? ' is-closing' : fromSheet ? ' from-sheet' : ''}`} onMouseDown={(e) => { if (e.target === e.currentTarget) onCancel() }}>
+    <div className={`confirm-modal__overlay${closing ? ' is-closing' : ''}`} onMouseDown={(e) => { if (e.target === e.currentTarget) onCancel() }}>
       <Modal
         title={title}
         width={500}

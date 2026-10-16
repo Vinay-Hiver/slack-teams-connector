@@ -1,10 +1,8 @@
 import { useRef, useState } from 'react'
 import { Button } from '../../components/Button'
-import { Input } from '../../components/Input'
 import { Textarea } from '../../components/Textarea'
 import { Modal } from '../../patterns/Modal'
 import { Icon } from '../../icons'
-import { openEmailPreview } from '../EmailPreview/previewData'
 import { slackChannels } from './data'
 import { useExit } from './useExit'
 import { Reveal } from './Reveal'
@@ -21,13 +19,19 @@ export type ConnectModalProps = {
   onSend: (invite: InviteDetails) => void
 }
 
+/** "Acme" from the first email's domain, since the form no longer asks for a company name. */
+const customerFrom = (emails: string[]) => {
+  const domain = emails[0]?.split('@')[1]?.split('.')[0] ?? ''
+  return domain ? domain.charAt(0).toUpperCase() + domain.slice(1) : 'Customer'
+}
+
+const displayName = 'OpenObserve Support'
+
 export function ConnectModal({ onClose: closed, onSend: sent }: ConnectModalProps) {
   const { closing, close } = useExit()
   const onClose = () => close(closed)
   const onSend = (invite: InviteDetails) => close(() => sent(invite))
   const [channel, setChannel] = useState('')
-  const [customer, setCustomer] = useState('')
-  const [displayName, setDisplayName] = useState('OpenObserve Support')
   const [emails, setEmails] = useState<string[]>([])
   const [showNote, setShowNote] = useState(false)
   const noteRef = useRef<HTMLDivElement>(null)
@@ -37,40 +41,28 @@ export function ConnectModal({ onClose: closed, onSend: sent }: ConnectModalProp
   }
   const [note, setNote] = useState('')
   const invalid = emails.some((e) => !isEmail(e))
-  const canSend = !!channel && !!customer.trim() && !!displayName.trim() && emails.length > 0 && emails.every(isEmail)
+  const canSend = !!channel && emails.length > 0 && emails.every(isEmail)
 
   return (
     <div className={`connect-modal__overlay${closing ? ' is-closing' : ''}`} onMouseDown={(e) => { if (e.target === e.currentTarget) onClose() }} onKeyDown={(e) => { if (e.key === 'Escape') onClose() }}>
       <Modal
-        title="Connect a Teams channel to Slack"
+        title="Setup Microsoft Teams"
         width={500}
         onClose={onClose}
         actions={
           <div className="connect-modal__actions">
-            <Button variant="secondary" size="md" iconRight={<Icon name="newtab" size={14} />} onClick={() => openEmailPreview({ displayName: displayName.trim() || 'OpenObserve Support', customer: customer.trim() || 'Contoso', sender: 'Amy', note: note.trim() || undefined })}>Preview email</Button>
             <div className="connect-modal__buttons">
               <Button variant="secondary" size="md" onClick={onClose}>Cancel</Button>
-              <Button variant="primary" size="md" disabled={!canSend} onClick={() => onSend({ channel, customer: customer.trim(), displayName: displayName.trim(), emails, note: note.trim() || undefined })}>Send invite</Button>
+              <Button variant="primary" size="md" disabled={!canSend} onClick={() => onSend({ channel, customer: customerFrom(emails), displayName, emails, note: note.trim() || undefined })}>Send invite</Button>
             </div>
           </div>
         }
       >
-        <p className="connect-modal__intro">Recipients get an email with setup steps and a verification code. The connection activates once setup is complete in Teams.</p>
-        <div className="connect-modal__fields">
-          <div className="connect-modal__group">
-            <SelectField label={<>Slack channel <InfoTip label="About Slack channel">Messages from Teams land in this channel</InfoTip></>} placeholder="Select a channel" options={slackChannels} value={channel} onChange={setChannel} />
-            <Input
-              fullWidth label="Customer name" placeholder="e.g. Acme" value={customer} onChange={(e) => setCustomer(e.target.value)}
-              helperText={<>Customer messages arrive as <em>“John ({customer.trim() || 'Acme'}) · via Teams”</em></>}
-            />
-          </div>
-          <Input
-            fullWidth label="Display name in Teams" value={displayName} onChange={(e) => setDisplayName(e.target.value)}
-            helperText={<>Your replies are sent as “<em>Amy · {displayName.trim() || 'OpenObserve Support'}</em>”</>}
-          />
+        <div className="connect-modal__step-body">
+          <SelectField label="Select Slack channel" hint="Messages from Teams land in this Slack channel" placeholder="Select a channel" options={slackChannels} value={channel} onChange={setChannel} />
           <div className="connect-modal__invite">
             <Textarea
-              className="connect-modal__emails" fullWidth label={<>Email invites to <InfoTip label="About email invites">Requires a Teams admin. Email invite includes a<br />setup link and a verification code.</InfoTip></>} placeholder="name@company.com"
+              className="connect-modal__emails" fullWidth label={<>Invite Microsoft Teams users <InfoTip label="About email invites">Requires a Teams admin. Email invite includes a<br />setup link and a verification code.</InfoTip></>} placeholder="name@company.com"
               tags={emails} onTagsChange={setEmails} isTagInvalid={(e) => !isEmail(e)}
               error={invalid} helperText={invalid ? `“${emails.find((e) => !isEmail(e))}” isn’t a valid email address` : undefined}
             />

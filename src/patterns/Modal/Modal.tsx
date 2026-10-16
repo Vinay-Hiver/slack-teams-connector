@@ -16,6 +16,8 @@ export type ModalProps = {
   icon?: IconName | ReactNode
   /** Shows the close (×) button and calls this when it is pressed. */
   onClose?: () => void
+  /** Standard: something in the header between the title and the close button, such as a step progress. */
+  headerAccessory?: ReactNode
   /** The content under the header. */
   children?: ReactNode
   /** The buttons, for example Cancel and a primary Button. They line up on the right. */
@@ -23,7 +25,7 @@ export type ModalProps = {
   className?: string
 }
 
-export function Modal({ title, layout = 'standard', width = 400, icon, onClose, children, actions, className }: ModalProps) {
+export function Modal({ title, layout = 'standard', width = 400, icon, onClose, headerAccessory, children, actions, className }: ModalProps) {
   const titleId = useId()
   const classes = ['hot-modal', `hot-modal--${layout}`, className].filter(Boolean).join(' ')
   const close = onClose && (
@@ -55,6 +57,7 @@ export function Modal({ title, layout = 'standard', width = 400, icon, onClose, 
           {typeof icon === 'string' && <span className="hot-modal__icon"><Icon name={icon as IconName} size={14} /></span>}
           <h2 className="hot-modal__title" id={titleId}>{title}</h2>
         </div>
+        {headerAccessory && <div className="hot-modal__accessory">{headerAccessory}</div>}
         {close}
       </div>
       <div className="hot-modal__body">

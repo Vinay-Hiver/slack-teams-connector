@@ -3,7 +3,6 @@ import { Button } from '../../components/Button'
 import { Textarea } from '../../components/Textarea'
 import { Modal } from '../../patterns/Modal'
 import { Icon } from '../../icons'
-import { openEmailPreview } from '../EmailPreview/previewData'
 import type { ChatAppRow } from './data'
 import { useExit } from './useExit'
 import { Reveal } from './Reveal'
@@ -16,12 +15,10 @@ type ResendModalProps = {
   row: ChatAppRow
   onCancel: () => void
   onSend: (emails: string[], note?: string) => void
-  /** Opened from the side sheet: the overlay is already up, so only the modal dissolves in (100ms). */
-  fromSheet?: boolean
 }
 
 /** "New invite to …": review the people and the note from the last invite, then send everyone a new link and code. */
-export function ResendModal({ row, onCancel: cancel, onSend: send, fromSheet }: ResendModalProps) {
+export function ResendModal({ row, onCancel: cancel, onSend: send }: ResendModalProps) {
   const { closing, close } = useExit()
   const onCancel = () => close(cancel)
   const onSend = (emails: string[], note?: string) => close(() => send(emails, note))
@@ -43,14 +40,13 @@ export function ResendModal({ row, onCancel: cancel, onSend: send, fromSheet }: 
   })
 
   return (
-    <div className={`resend-modal__overlay${closing ? ' is-closing' : fromSheet ? ' from-sheet' : ''}`} onMouseDown={(e) => { if (e.target === e.currentTarget) onCancel() }}>
+    <div className={`resend-modal__overlay${closing ? ' is-closing' : ''}`} onMouseDown={(e) => { if (e.target === e.currentTarget) onCancel() }}>
       <Modal
         title={`New invite to ${row.customer}`}
         width={500}
         onClose={onCancel}
         actions={
           <div className="resend-modal__actions">
-            <Button variant="secondary" size="md" iconRight={<Icon name="newtab" size={14} />} onClick={() => openEmailPreview({ displayName: row.displayName, customer: row.customer, sender: 'Amy', note: note.trim() || undefined })}>Preview email</Button>
             <div className="resend-modal__buttons">
               <Button variant="secondary" size="md" onClick={onCancel}>Cancel</Button>
               <Button variant="primary" size="md" disabled={!canSend} onClick={() => onSend(emails, note.trim() || undefined)}>Resend invite</Button>

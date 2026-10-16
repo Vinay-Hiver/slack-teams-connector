@@ -10,3 +10,8 @@
 .select-field__menu .hot-dropdown__search { padding-left: 12px; padding-right: 12px; }
 .select-field__menu .hot-dropdown__list { display: flex; flex-direction: column; gap: 4px; padding-left: 12px; padding-right: 12px; } /* 4px between rows */
 .select-field__menu .hot-list-item { padding: 4px; border-radius: 4px; }
+/* No outer glow around the list, only the thin border */
+.select-field__menu .hot-dropdown { box-shadow: inset 0 0 0 0.5px var(--slateBorderMild); }
+/* A grey line between the label and the box */
+.select-field .hot-field__label:has(.select-field__hint) { flex-wrap: wrap; row-gap: 2px; }
+.select-field__hint { flex: 0 0 100%; color: var(--slateTextSubtle); font: var(--fontWeightRegular) 12px/18px var(--fontFamily); }

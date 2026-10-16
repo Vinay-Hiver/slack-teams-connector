@@ -1,0 +1,55 @@
+/* A dummy Outlook (web). Values read from the Figma "Mail - Vinaykumar C - Outlook" frame; Segoe UI where the machine has it. */
+.outlook { --o-font: 'Segoe UI', 'Segoe UI Web (West European)', Inter, system-ui, sans-serif; display: flex; flex-direction: column; height: 100vh; min-width: 900px; overflow: hidden; background: #e6eaf7 var(--outlook-wallpaper) center / cover no-repeat; font-family: var(--o-font); color: #242424; }
+.outlook::before { content: ''; position: fixed; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 5.5%), linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 13.9%); }
+.outlook > * { position: relative; }
+
+.outlook__top { display: flex; align-items: center; flex: none; height: 48px; }
+.outlook__launcher { display: flex; align-items: center; justify-content: center; width: 32px; height: 48px; padding: 0; border: 0; background: none; cursor: pointer; }
+.outlook__brand { padding: 0 24px 0 4px; font: 600 16px/48px var(--o-font); }
+.outlook__avatar-me { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 32px; height: 32px; margin: 0 12px 0 auto; border-radius: 50%; background: #0f6cbd; color: #fff; font: 600 12px/1 var(--o-font); }
+.outlook__search { box-sizing: border-box; display: flex; align-items: center; width: 350px; height: 32px; padding: 0 10px; border-radius: 4px; background: #fff; font: 400 14px/20px var(--o-font); color: #424242; }
+
+.outlook__main { display: flex; flex: 1; min-height: 0; }
+.outlook__rail { position: relative; display: flex; flex-direction: column; flex: none; width: 40px; }
+.outlook__rail-btn { position: relative; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; margin: 3px 0; padding: 0; border: 0; border-radius: 4px; background: none; cursor: pointer; }
+.outlook__rail-btn:hover { background: rgba(255,255,255,0.5); }
+.outlook__rail-btn.is-active::before { content: ''; position: absolute; left: 2px; top: 4px; width: 2px; height: 32px; border-radius: 8px; background: #0f6cbd; }
+
+.outlook__content { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.outlook__ribbon { display: flex; flex: none; height: 31px; padding: 0 4px; background: #fff; font: 400 14px/31px var(--o-font); color: #424242; }
+.outlook__ribbon > span { position: relative; padding: 0 10px; }
+.outlook__ribbon .is-active { font-weight: 600; color: #242424; }
+.outlook__ribbon .is-active::after { content: ''; position: absolute; left: 10px; right: 10px; bottom: 0; height: 2px; border-radius: 10px; background: #0f6cbd; }
+
+.outlook__panes { display: flex; flex: 1; min-height: 0; padding-top: 8px; }
+.outlook__folders { box-sizing: border-box; flex: none; width: 246px; padding: 6px 0 0 8px; border-top-left-radius: 4px; background: rgba(255,255,255,0.65); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+.outlook__account { display: flex; align-items: center; height: 36px; padding: 0 12px; font: 400 16px/22px var(--o-font); }
+.outlook__folder { display: flex; align-items: center; justify-content: space-between; height: 36px; margin-right: 8px; padding: 0 10px; border-radius: 4px; font: 400 14px/19px var(--o-font); }
+.outlook__folder.is-active { background: #e6e6e6; font-weight: 600; }
+.outlook__count { font-size: 12px; font-weight: 600; color: #616161; }
+.outlook__folder.is-active .outlook__count { font-size: 14px; color: #0f548c; }
+
+.outlook__list { box-sizing: border-box; display: flex; flex-direction: column; flex: none; width: 351px; margin-right: 2px; border-top: 1px solid #e0e0e0; border-left: 1px solid #e0e0e0; border-top-right-radius: 4px; background: #fff; box-shadow: 0 1.6px 3.6px rgba(0,0,0,0.13), 0 0.3px 0.9px rgba(0,0,0,0.11); }
+.outlook__list-title { margin: 0; padding: 10px; border-bottom: 1px solid #e0e0e0; font: 400 16px/22px var(--o-font); }
+.outlook__mail { display: flex; align-items: center; gap: 0; width: 100%; padding: 5px 10px 13px; border: 0; border-bottom: 1px solid #e0e0e0; background: #fff; text-align: left; font-family: inherit; cursor: pointer; }
+.outlook__mail:hover { background: #f5f5f5; }
+.outlook__mail.is-selected { background: #ebf3fc; box-shadow: inset 3px 0 0 #0f6cbd; }
+.outlook__avatar { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 32px; height: 32px; margin: 8px 16px 0 8px; border-radius: 50%; background: #d69ca5; color: #420610; font: 600 14px/14px var(--o-font); }
+.outlook__mail-text { display: flex; flex-direction: column; min-width: 0; padding-top: 8px; }
+.outlook__mail-from, .outlook__mail-subject { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 14px/20px var(--o-font); }
+.outlook__mail-subject { color: #000; }
+
+.outlook__reading { flex: 1; min-width: 370px; margin-left: 1px; overflow: auto; }
+.outlook__message { box-sizing: border-box; min-height: 100%; padding: 20px 24px 40px; border-top-right-radius: 4px; background: #fff; }
+.outlook__subject { margin: 0 0 12px; font: 600 20px/28px var(--o-font); }
+.outlook__from { display: flex; align-items: center; }
+.outlook__avatar--lg { width: 40px; height: 40px; margin: 0 12px 0 0; }
+.outlook__from-name, .outlook__from-to { display: block; font: 400 14px/20px var(--o-font); }
+.outlook__from-to { color: #616161; }
+.outlook__body { margin-top: 24px; font: 400 14px/20px var(--o-font); }
+.outlook__body p { margin: 0 0 12px; }
+
+/* Unread: bold sender, blue bold subject and a blue edge, like Outlook */
+.outlook__mail.is-unread { box-shadow: inset 3px 0 0 #0f6cbd; }
+.outlook__mail.is-unread .outlook__mail-from { font-weight: 600; }
+.outlook__mail.is-unread .outlook__mail-subject { color: #0f6cbd; font-weight: 600; }

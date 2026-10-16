@@ -7,6 +7,8 @@ import './SelectField.css'
 
 type SelectFieldProps = {
   label: ReactNode
+  /** A small grey line under the label. */
+  hint?: string
   placeholder: string
   options: string[]
   value: string
@@ -14,7 +16,7 @@ type SelectFieldProps = {
 }
 
 /** A field that opens the storybook Dropdown. Looks like the Input (FormField frame) with a chevron at the end. */
-export function SelectField({ label, placeholder, options, value, onChange }: SelectFieldProps) {
+export function SelectField({ label, hint, placeholder, options, value, onChange }: SelectFieldProps) {
   const id = useId()
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -35,7 +37,7 @@ export function SelectField({ label, placeholder, options, value, onChange }: Se
 
   return (
     <div className="select-field" ref={ref}>
-      <FormField id={id} label={label} fullWidth>
+      <FormField id={id} label={hint ? <>{label}<span className="select-field__hint">{hint}</span></> : label} fullWidth>
         <button type="button" id={id} className="select-field__trigger" aria-haspopup="listbox" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
           <span className={value ? 'select-field__value' : 'select-field__placeholder'}>{value || placeholder}</span>
           <Icon name="dropdown" size={16} />

@@ -1,0 +1,85 @@
+/* Slack conversation list (Figma node 3017:24579) */
+.slack-list {
+  width: 280px;
+  min-width: 280px;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background: var(--slateSurfaceWhite, #fff);
+  border-right: 1px solid var(--slateBorderLight);
+  overflow-y: auto;
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.slack-list__header {
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--slateBorderMild, #edf1f6);
+  font-size: 16px;
+  color: var(--slateTextBody);
+}
+.slack-list__header svg { color: var(--slateTextSubtle); }
+
+.slack-list__item {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--slateBorderMild, #edf1f6);
+  background: transparent;
+  cursor: pointer;
+  padding: 8px;
+  font-family: inherit;
+}
+/* Inset, rounded selection highlight (same treatment as the Chat list). */
+.slack-list__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+}
+.slack-list__inner.is-selected { background: var(--slateSurfaceSubtle100, #f1f5f9); }
+
+.slack-list__top { display: flex; align-items: center; gap: 8px; }
+.slack-list__avatar {
+  position: relative;
+  width: 18px; height: 18px; border-radius: 50px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 11px; font-weight: 500;
+}
+.slack-list__online {
+  position: absolute; right: -1px; bottom: -1px; width: 7.5px; height: 7.5px;
+  border-radius: 50%; background: var(--green-500, #2dbb6d); border: 1.5px solid #fff;
+}
+.slack-list__name { flex: 1; min-width: 0; font-size: 14px; font-weight: 500; color: var(--slateTextTitle); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.slack-list__badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 20px; height: 16px; padding: 0 4px; border-radius: 30px;
+  background: var(--errorSurfaceDisabled, #eb5c5c); color: #fff;
+  font-size: 12px; font-weight: 500; flex-shrink: 0;
+}
+.slack-list__date { font-size: 12px; color: var(--slateTextSubtle); flex-shrink: 0; }
+
+.slack-list__preview {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; color: var(--slateTextSubtle);
+  overflow: hidden;
+}
+.slack-list__preview > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.slack-list__preview-strong { font-weight: 500; }
+.slack-list__clip { display: inline-flex; color: var(--slateTextSubtle); flex-shrink: 0; }
+
+.slack-list__chip {
+  align-self: flex-start;
+  display: inline-flex; align-items: center;
+  padding: 2px 6px; border: 1px solid var(--slateSurfaceSubtle300, #cbd5e1);
+  border-radius: 4px; font-size: 12px; color: var(--slateTextBody);
+}
+.slack-list__empty { padding: 24px 16px; font-size: 14px; color: var(--slateTextSubtle); }

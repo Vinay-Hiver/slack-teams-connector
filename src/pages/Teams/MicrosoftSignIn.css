@@ -1,0 +1,23 @@
+/* A dummy Microsoft sign-in page. Values read from the reference screenshot. */
+.ms { position: relative; display: flex; flex-direction: column; min-height: 100vh; font-family: 'Segoe UI', -apple-system, Inter, system-ui, sans-serif; color: #1b1b1b; background: radial-gradient(60% 50% at 8% 22%, #f2dfd8 0%, rgba(242,223,216,0) 70%), radial-gradient(60% 55% at 95% 85%, #ece6d3 0%, rgba(236,230,211,0) 70%), radial-gradient(60% 55% at 10% 90%, #dde2ee 0%, rgba(221,226,238,0) 70%), #e6e8e4; }
+.ms__main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; padding: 24px 16px; }
+.ms__card, .ms__options { box-sizing: border-box; width: 440px; max-width: 100%; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+.ms__card { padding: 44px 44px 48px; }
+.ms__logo { display: flex; align-items: center; gap: 4px; height: 24px; margin-bottom: 16px; }
+.ms__wordmark { color: #737373; font-size: 24px; line-height: 24px; letter-spacing: -0.4px; }
+.ms__title { margin: 16px 0 0; font-size: 24px; line-height: 32px; font-weight: 600; }
+.ms__input { box-sizing: border-box; display: block; width: 100%; height: 36px; margin-top: 20px; padding: 0 0 4px; border: 0; border-bottom: 1px solid #666; border-radius: 0; outline: 0; background: none; font-family: inherit; font-size: 15px; color: #1b1b1b; }
+.ms__input::placeholder { color: #666; }
+.ms__input:focus { border-bottom: 2px solid #0067b8; margin-bottom: -1px; }
+.ms__line { margin: 16px 0 0; font-size: 13px; line-height: 20px; }
+.ms a { color: #0067b8; text-decoration: none; }
+.ms a:hover { color: #005da6; text-decoration: underline; }
+.ms__actions { display: flex; justify-content: flex-end; margin-top: 24px; }
+.ms__next { min-width: 108px; height: 32px; padding: 4px 12px; border: 0; background: #0067b8; color: #fff; font-family: inherit; font-size: 15px; cursor: pointer; }
+.ms__next:hover { background: #005da6; }
+.ms__next:focus-visible { outline: 1px dashed #000; outline-offset: 2px; }
+.ms__options { display: flex; align-items: center; gap: 12px; height: 50px; padding: 0 44px; border: 0; font-family: inherit; font-size: 15px; text-align: left; cursor: pointer; }
+.ms__options:hover { background: #f4f4f4; }
+.ms__foot { display: flex; justify-content: flex-end; gap: 28px; padding: 16px 24px 20px; font-size: 12px; }
+.ms__foot a { color: #1b1b1b; }
+.ms__foot span { letter-spacing: 2px; }

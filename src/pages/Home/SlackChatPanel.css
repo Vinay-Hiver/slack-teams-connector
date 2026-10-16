@@ -1,0 +1,147 @@
+/* Slack chat panel — full-width message rows with hover toolbars
+   (Figma node 3017:24702). */
+.slack-panel {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--slateSurfaceWhite, #fff);
+  border-left: 1px solid var(--slateBorderLight);
+  border-right: 1px solid var(--slateBorderLight);
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
+/* Top bar: contact name left, channel chip right */
+.slack-topbar {
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: var(--slateSurfaceSubtle, #f8fafc);
+  border-bottom: 1px solid var(--slateBorderLight);
+}
+.slack-topbar__name { font-size: 14px; font-weight: 500; color: var(--slateTextTitle); }
+.slack-topbar__chip {
+  display: inline-flex; align-items: center;
+  padding: 2px 6px; border-radius: 4px;
+  background: var(--slateSurfaceSlate150, #edf1f6);
+  font-size: 12px; color: var(--slateTextBody);
+}
+
+/* Thread — extra top padding so the first message's hover toolbar
+   (which floats above the row) doesn't overlap the top bar. */
+.slack-thread { flex: 1; min-height: 0; overflow-y: auto; padding-top: 20px; }
+
+/* Message row (full width) */
+.slack-msg {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  align-items: flex-start;
+}
+.slack-msg:hover { background: var(--slateSurfaceSubtle, #f8fafc); }
+
+.slack-msg__avatar {
+  width: 30px; height: 30px; border-radius: 100px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 14px; font-weight: 500;
+}
+.slack-msg__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.slack-msg__head { display: flex; align-items: baseline; gap: 12px; }
+.slack-msg__name { font-size: 14px; font-weight: 500; color: var(--slateTextBody); }
+.slack-msg__time { font-size: 12px; color: var(--slateTextDisabled, #94a3b8); }
+.slack-msg__text { font-size: 14px; line-height: 20px; color: var(--slateTextBody); white-space: pre-line; }
+
+/* Hover toolbar — floats at the message's top-right */
+.slack-msg__toolbar {
+  position: absolute;
+  right: 20px;
+  top: -13px;
+  display: flex;
+  align-items: center;
+  height: 26px;
+  background: #fff;
+  border: 0.5px solid var(--slateBorderLight);
+  border-radius: 6px;
+  box-shadow: 0 0 2px rgba(51, 65, 85, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+.slack-msg:hover .slack-msg__toolbar { opacity: 1; pointer-events: auto; }
+.slack-msg__tool {
+  display: flex; align-items: center; justify-content: center;
+  height: 26px; padding: 6px 8px; border: 0; background: transparent; cursor: pointer;
+  border-right: 1px solid var(--slateBorderLight);
+}
+.slack-msg__tool:last-child { border-right: 0; }
+.slack-msg__tool:hover { background: var(--slateSurfaceSubtle100, #f1f5f9); }
+
+/* Reactions below a message */
+.slack-reactions { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px; }
+.slack-reaction {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 6px; border: 1px solid var(--slateBorderLight); border-radius: 100px;
+  background: var(--slateSurfaceSubtle100, #f1f5f9); cursor: pointer;
+}
+.slack-reaction__emoji { font-size: 12px; line-height: 1; }
+.slack-reaction__count { font-size: 12px; color: var(--slateTextBody); }
+
+/* Emoji picker (anchored under the toolbar) */
+.slack-emoji-picker {
+  position: absolute; top: 30px; right: 0;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px;
+  padding: 6px; width: 180px; box-sizing: border-box;
+  background: #fff; border: 1px solid var(--slateBorderLight);
+  border-radius: 8px; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14); z-index: 10;
+}
+.slack-emoji-picker__item {
+  border: 0; background: transparent; cursor: pointer; border-radius: 6px;
+  padding: 4px; font-size: 18px; line-height: 1;
+}
+.slack-emoji-picker__item:hover { background: var(--slateSurfaceSubtle100, #f1f5f9); }
+
+/* Composer */
+.slack-composer-wrap { flex-shrink: 0; padding: 20px; }
+.slack-composer {
+  border: 1px solid var(--slateBorderLight);
+  border-radius: 6px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.slack-composer__input {
+  border: 0; outline: none; resize: none;
+  padding: 12px; min-height: 80px;
+  font-family: inherit; font-size: 14px; line-height: 20px; color: var(--slateTextBody);
+  background: transparent;
+}
+.slack-composer__input::placeholder { color: var(--slateTextSubtle); }
+.slack-composer__toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 18px 10px 12px; border-top: 1px solid #f3f4f6;
+}
+.slack-composer__tools { display: flex; align-items: center; gap: 8px; }
+.slack-composer__tool-btn {
+  display: flex; align-items: center; justify-content: center;
+  padding: 5px; border: 0; background: #fff; border-radius: 6px; cursor: pointer;
+}
+.slack-composer__tool-btn:hover { background: var(--slateSurfaceSubtle100, #f1f5f9); }
+.slack-composer__send {
+  padding: 6px 8px; min-width: 52px; border: 0; border-radius: 6px;
+  background: var(--slateSurfaceDisabled, #e2e8f0); color: var(--slateTextDisabled, #94a3b8);
+  font-family: inherit; font-size: 14px; font-weight: 500; cursor: not-allowed;
+}
+.slack-composer__send:not(:disabled) {
+  background: var(--primarySurfaceDefault); color: #fff; cursor: pointer;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+}
+.slack-msg__who { display: inline-flex; align-items: center; gap: 4px; }
+.slack-msg__head { align-items: center; }
+.slack-msg__logo { display: inline-flex; align-items: center; cursor: default; }

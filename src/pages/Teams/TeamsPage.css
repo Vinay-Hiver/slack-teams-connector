@@ -1,0 +1,128 @@
+/* A dummy Microsoft Teams. Purple brand colours as in Teams (the Teams clone repo uses the same indigo). */
+.teams { --t-brand: #5b5fc7; display: flex; flex-direction: column; height: 100vh; min-width: 760px; font-family: 'Segoe UI', -apple-system, Inter, system-ui, sans-serif; color: #242424; background: #f5f5f5; }
+.teams__top { display: flex; align-items: center; flex: none; height: 48px; padding: 0 12px; background: #ebebeb; }
+.teams__brand { display: flex; align-items: center; gap: 8px; width: 260px; font-size: 14px; font-weight: 600; }
+.teams__search { box-sizing: border-box; width: 420px; height: 32px; padding: 0 12px; border-radius: 4px; background: #fff; display: flex; align-items: center; font-size: 14px; color: #616161; }
+.teams__me { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; margin-left: auto; border-radius: 50%; background: var(--t-brand); color: #fff; font-weight: 600; font-size: 13px; }
+.teams__body { display: flex; flex: 1; min-height: 0; }
+.teams__rail { display: flex; flex-direction: column; flex: none; width: 68px; padding: 8px 0; background: #ebebeb; }
+.teams__app { display: flex; align-items: center; justify-content: center; width: 68px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; }
+.teams__app:hover { background: rgba(0,0,0,0.05); }
+.teams__app.is-active { box-shadow: inset 3px 0 0 var(--t-brand); }
+.teams__side { flex: none; width: 260px; padding: 12px 8px; background: #f5f5f5; }
+.teams__side-title { margin: 0 8px 12px; font-size: 20px; font-weight: 700; }
+.teams__team { display: flex; align-items: center; gap: 8px; padding: 6px 8px; font-size: 14px; font-weight: 600; }
+.teams__team-icon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 24px; height: 24px; border-radius: 6px; background: var(--t-brand); color: #fff; font-size: 12px; font-weight: 600; }
+.teams__channel { display: block; width: calc(100% - 40px); margin: 0 0 2px 40px; padding: 6px 8px; border: 0; border-radius: 4px; background: none; font-family: inherit; font-size: 14px; text-align: left; color: inherit; cursor: pointer; }
+.teams__channel:hover { background: #ececec; }
+.teams__channel.is-active:hover { background: #e8ebfa; }
+.teams__channel.is-active { background: #e8ebfa; color: #3d41a8; font-weight: 600; }
+
+.teams__main { display: flex; flex-direction: column; flex: 1; min-width: 0; margin: 8px 8px 0 0; border-radius: 8px 8px 0 0; background: #fff; box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.14); }
+.teams__head { display: flex; align-items: center; gap: 10px; flex: none; height: 52px; padding: 0 20px; border-bottom: 1px solid #e0e0e0; }
+.teams__title { margin: 0; font-size: 16px; font-weight: 600; }
+.teams__tabs { display: flex; align-self: stretch; gap: 20px; margin-left: 16px; font-size: 14px; color: #424242; }
+.teams__tabs span { display: flex; align-items: center; border-bottom: 2px solid transparent; }
+.teams__tabs .is-active { border-bottom-color: var(--t-brand); color: #242424; font-weight: 600; }
+.teams__messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; padding: 20px; background: #fff; border-radius: 0; }
+.teams__notice { align-self: center; padding: 8px 14px; border-radius: 6px; background: #e8ebfa; color: #3d41a8; font-size: 13px; }
+.teams__msg { display: flex; align-items: flex-start; gap: 10px; max-width: 70%; }
+.teams__msg.is-mine { align-self: flex-end; flex-direction: row-reverse; }
+.teams__avatar { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 32px; height: 32px; border-radius: 50%; color: #fff; font-size: 13px; font-weight: 600; }
+.teams__bubble { padding: 8px 12px; border-radius: 6px; background: #fff; box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14); }
+.teams__msg.is-mine .teams__bubble { background: #e8ebfa; }
+.teams__meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 2px; }
+.teams__name { font-size: 12px; font-weight: 600; }
+.teams__time { font-size: 12px; color: #616161; }
+.teams__text { font-size: 14px; line-height: 20px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.teams__composer { flex: none; padding: 12px 20px 16px; background: #fff; }
+.teams__box { display: flex; align-items: flex-end; gap: 8px; padding: 6px 8px 6px 12px; border: 1px solid #d1d1d1; border-radius: 4px; background: #fff; }
+.teams__input { flex: 1; min-width: 0; border: 0; outline: 0; resize: none; background: none; font-size: 14px; line-height: 20px; font-family: inherit; }
+.teams__send { width: 32px; height: 32px; border: 0; border-radius: 4px; background: none; color: var(--t-brand); font-size: 16px; cursor: pointer; }
+.teams__send:disabled { color: #bdbdbd; cursor: default; }
+
+/* Posts with a "N replies" link; the replies open in a Thread panel on the right, as in Teams */
+.teams__post { min-width: 0; display: flex; flex-direction: column; gap: 4px; align-self: flex-start; max-width: 70%; }
+.teams__post.is-mine { align-self: flex-end; }
+.teams__post .teams__msg { max-width: none; }
+.teams__thread-link { white-space: nowrap; display: flex; align-items: center; gap: 8px; align-self: flex-start; margin-left: 42px; padding: 2px 6px 2px 2px; border: 0; border-radius: 4px; background: none; font-family: inherit; font-size: 12px; cursor: pointer; }
+.teams__thread-link:hover { background: #e8ebfa; }
+.teams__reply-count { color: var(--t-brand); font-weight: 600; }
+.teams__reply-time { color: #616161; }
+.teams__avatar--xs { width: 20px; height: 20px; font-size: 10px; }
+.teams__avatar--sm { width: 24px; height: 24px; font-size: 11px; }
+.teams__reply-link { align-self: flex-start; margin-left: 42px; padding: 2px 4px; border: 0; border-radius: 4px; background: none; color: var(--t-brand); font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.teams__reply-link:hover { background: #e8ebfa; }
+.teams__post.is-open .teams__bubble { box-shadow: 0 0 0 2px var(--t-brand); }
+
+.teams__thread { display: flex; flex-direction: column; flex: none; width: 420px; margin: 8px 8px 0 0; border-radius: 8px 8px 0 0; background: #fff; box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.14); }
+.teams__thread-head { display: flex; align-items: center; justify-content: space-between; flex: none; height: 52px; padding: 0 12px 0 20px; border-bottom: 1px solid #e0e0e0; }
+.teams__thread-title { margin: 0; font-size: 16px; font-weight: 600; }
+.teams__close { width: 28px; height: 28px; border: 0; border-radius: 4px; background: none; color: #424242; font-size: 15px; cursor: pointer; }
+.teams__close:hover { background: #f0f0f0; }
+.teams__thread-body { flex: 1; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; padding: 20px; }
+.teams__thread-body .teams__msg { max-width: none; }
+.teams__divider { display: flex; align-items: center; gap: 10px; font-size: 12px; color: #616161; }
+.teams__divider::before, .teams__divider::after { content: ''; flex: 1; height: 1px; background: #d1d1d1; }
+.teams__thread-composer { flex: none; padding: 12px 16px 16px; }
+.teams__box--thread { flex-direction: column; align-items: stretch; gap: 4px; padding: 8px 8px 6px 12px; }
+.teams__send-to { font-size: 12px; color: #424242; }
+.teams__send-to { display: flex; align-items: center; gap: 4px; }
+.teams__send-to span { display: inline-flex; align-items: center; gap: 4px; color: var(--t-brand); font-weight: 600; }
+.teams__thread-row { display: flex; align-items: flex-end; gap: 8px; }
+
+/* The Hiver App dialog over the page until the app is added */
+.teams__overlay { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; background: rgba(0,0,0,0.6); }
+
+.teams__empty { margin: auto; font-size: 14px; color: #616161; }
+.teams__mention { color: #5b5fc7; font-weight: 600; }
+
+/* The @ suggestions flyout above the composer */
+.teams__composer { position: relative; }
+.teams__suggest { position: absolute; z-index: 10; left: 20px; bottom: calc(100% - 8px); width: 420px; max-width: calc(100% - 40px); padding: 8px 0; border-radius: 8px; background: #fff; box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.14); }
+.teams__suggest-title { padding: 6px 16px 8px; font-size: 14px; font-weight: 600; color: #424242; }
+.teams__suggest-row { display: flex; align-items: center; gap: 12px; width: 100%; padding: 8px 16px; border: 0; background: none; font-family: inherit; text-align: left; cursor: pointer; }
+.teams__suggest-row.is-picked, .teams__suggest-row:hover { background: #f0f0f0; }
+.teams__suggest-icon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 32px; height: 32px; border-radius: 6px; background: #c4314b; color: #fff; font-size: 13px; font-weight: 600; }
+.teams__suggest-icon--app { background: #fff; box-shadow: 0 0 0 1px #d1d1d1; }
+.teams__suggest-icon--plain { background: none; color: #424242; font-size: 18px; }
+.teams__suggest-text { display: flex; flex-direction: column; min-width: 0; }
+.teams__suggest-name { font-size: 14px; line-height: 20px; color: #242424; }
+.teams__suggest-sub { font-size: 12px; line-height: 16px; color: #616161; }
+
+/* In the box the text is drawn by a mirror layer, so "@Hiver App" can be blue; the real textarea on top keeps the caret and typing */
+.teams__field { position: relative; flex: 1; min-width: 0; }
+.teams__mirror, .teams__input--mention { box-sizing: border-box; width: 100%; padding: 0; font-family: inherit; font-size: 14px; line-height: 20px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.teams__mirror { position: absolute; inset: 0; height: 40px; overflow: hidden; pointer-events: none; color: #242424; }
+.teams__input--mention { position: relative; display: block; height: 40px; color: transparent; caret-color: #242424; background: transparent; overflow: hidden; }
+.teams__input--mention::placeholder { color: #616161; }
+.teams__mirror .teams__mention { font-weight: 400; } /* same width as the textarea text, so the caret lines up */
+
+/* The Hiver App's messages in a thread: a card with the code box, then a confirmation */
+.teams__bot { display: flex; align-items: flex-start; gap: 10px; }
+.teams__bot-avatar { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 32px; height: 32px; border-radius: 6px; background: #fff; box-shadow: 0 0 0 1px #d1d1d1; }
+.teams__bot-avatar--sm { width: 20px; height: 20px; border-radius: 4px; }
+.teams__bot-main { flex: 1; min-width: 0; }
+.teams__card { margin-top: 2px; padding: 12px 14px; border-radius: 6px; background: #f5f5f5; box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14); }
+.teams__card-title { margin: 0 0 10px; font-size: 14px; line-height: 20px; font-weight: 600; }
+.teams__card-text { margin: 0 0 12px; font-size: 14px; line-height: 20px; color: #424242; overflow-wrap: anywhere; }
+.teams__card-text--dark { display: flex; align-items: flex-start; gap: 8px; margin: 0; color: #242424; }
+.teams__card-text a { color: #5b5fc7; }
+.teams__code { box-sizing: border-box; display: block; width: 100%; height: 32px; padding: 0 10px; border: 1px solid #d1d1d1; border-bottom: 2px solid #5b5fc7; border-radius: 4px; background: #fff; font-family: inherit; font-size: 14px; outline: 0; }
+.teams__code:disabled { border-bottom-color: #d1d1d1; background: #f0f0f0; color: #616161; }
+.teams__code.is-bad { border-bottom-color: #c4314b; }
+.teams__code-error { margin-top: 4px; font-size: 12px; color: #c4314b; }
+.teams__card-btn { margin-top: 12px; height: 32px; padding: 0 16px; border: 1px solid #8a8a8a; border-radius: 4px; background: #fff; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+.teams__card-btn:hover:not(:disabled) { background: #f0f0f0; }
+.teams__card-btn:disabled { color: #a0a0a0; border-color: #d1d1d1; cursor: default; }
+.teams__card-note { display: flex; align-items: center; justify-content: space-between; margin-top: 2px; padding: 8px 14px; border-radius: 6px; background: #f5f5f5; font-size: 14px; color: #424242; }
+.teams__card-note button { border: 0; background: none; font-size: 14px; color: #424242; cursor: pointer; }
+.teams__card--ok { background: #f5f5f5; }
+.teams__check { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 16px; height: 16px; margin-top: 2px; border-radius: 3px; background: #2fb561; color: #fff; font-size: 10px; font-weight: 700; line-height: 1; }
+.teams__bot--follow { padding-left: 42px; } /* lines up with the card above, which has the avatar */
+
+/* Your own messages: no avatar, flush right with the same 20px gap the others have on the left */
+.teams__msg.is-mine { flex-direction: row; align-self: flex-end; }
+.teams__post.is-mine { align-items: flex-end; }
+.teams__post.is-mine .teams__thread-link, .teams__post.is-mine .teams__reply-link { margin-left: 0; align-self: flex-end; }
+.teams__thread-body .teams__msg.is-mine { align-self: flex-end; }

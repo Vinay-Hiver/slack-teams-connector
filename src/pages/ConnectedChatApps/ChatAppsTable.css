@@ -3,3 +3,21 @@
 .chat-apps__emails { font: var(--fontWeightRegular) 12px/18px var(--fontFamily); color: var(--slateTextSubtle); overflow: hidden; text-overflow: ellipsis; }
 .chat-apps__teams { display: inline-flex; align-items: center; gap: 6px; }
 .chat-apps__warn { display: inline-flex; color: var(--errorSurfaceDefault); }
+/* Actions column: right aligned, and its buttons only show on the hovered row (or when something inside has focus or an open menu) */
+.chat-apps__table .hot-table__td:last-child { padding: 6px 16px; overflow: visible; }
+.chat-apps__actions { display: flex; justify-content: flex-end; opacity: 0; transition: opacity 120ms ease; }
+.hot-table__row:is(:hover, :focus-within) .chat-apps__actions { opacity: 1; }
+.chat-apps__icon-btn { --btn-fg: var(--slateTextBody); width: 30px; height: 30px; border: 1px solid var(--slateBorderMild); border-radius: 6px; background: var(--slateSurfaceWhite); }
+/* On the hovered row the button gets an extra 1px white ring outside its border, so it stands out from the grey row */
+.hot-table__row:is(:hover, :focus-within) .chat-apps__icon-btn { box-shadow: 0 0 0 1px var(--slateSurfaceWhite); }
+.chat-apps__mask-icon { display: inline-block; width: 16px; height: 16px; background: currentColor; -webkit-mask: var(--icon-url) center / 16px 16px no-repeat; mask: var(--icon-url) center / 16px 16px no-repeat; }
+.chat-apps__menu { position: relative; }
+.chat-apps__menu-list { position: absolute; z-index: 20; top: calc(100% + 4px); right: 0; display: flex; flex-direction: column; width: 180px; padding: 4px; border: 0.5px solid var(--slateBorderLight); border-radius: 8px; background: var(--slateSurfaceWhite); box-shadow: 0 8px 8px var(--slateSurfaceSlate150); }
+.chat-apps__menu-item { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border: 0; border-radius: 8px; background: transparent; color: var(--slateTextBody); font: var(--fontWeightRegular) 14px/20px var(--fontFamily); text-align: left; cursor: pointer; }
+.chat-apps__menu-item:hover { background: var(--slateSurfaceSubtle); }
+.chat-apps__menu-item .hot-icon, .chat-apps__menu-item svg { flex: none; }
+/* "+N" in the customer column, and the flyout of emails it opens: fixed width, scrolls after five rows */
+.chat-apps__more { padding: 0; border: 0; background: none; color: var(--primarySurfaceDefault); font: inherit; cursor: pointer; }
+.chat-apps__more:focus-visible { outline: 2px solid var(--primaryBorderDefault); outline-offset: 2px; border-radius: 2px; }
+.chat-apps__flyout { position: fixed; z-index: 200; box-sizing: border-box; width: 220px; max-height: 138px; overflow-y: auto; padding: 4px; border: 0.5px solid var(--slateBorderLight); border-radius: 8px; background: var(--slateSurfaceWhite); box-shadow: 0 8px 8px var(--slateSurfaceSlate150); }
+.chat-apps__flyout-item { display: block; padding: 4px 8px; border-radius: 8px; color: var(--slateTextBody); font: var(--fontWeightRegular) 12px/18px var(--fontFamily); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

@@ -5,93 +5,109 @@ import { MainNav } from '../../patterns/MainNav'
 import { navSampleFooterItems, navSampleItems } from '../../patterns/MainNav/sampleData'
 import { AdminSidebar } from '../../patterns/AdminSidebar'
 import { adminSampleSections } from '../../patterns/AdminSidebar/sampleData'
+import { goToNav } from '../navigation'
 import { PageLayout } from '../../patterns/PageLayout'
 import chatAppsNavIcon from '../../assets/connected-chat-apps.svg'
-import emptyIcon from '../../assets/chat-apps-empty.svg'
+import teamsBrand16 from '../../assets/brand-teams-16.svg'
+import teamsBrand24 from '../../assets/brand-teams-24.svg'
 import { ChatAppsTable } from './ChatAppsTable'
+import type { RowAction } from './ChatAppsTable'
 import { ConfirmModal } from './ConfirmModal'
 import type { ConfirmKind } from './ConfirmModal'
 import { ResendModal } from './ResendModal'
 import { ConnectModal } from './ConnectModal'
 import type { InviteDetails } from './ConnectModal'
 import { sampleRows, summarizeEmails } from './data'
+import { sendInvite as shareInvite } from '../../sync/store'
 import type { ChatAppRow } from './data'
-import { SideSheet } from './SideSheet'
 import { SubNav } from './SubNav'
 import type { SubNavItem } from './SubNav'
 import './ConnectedChatAppsPage.css'
 
-const inboxName = 'Support-Slack-Inbox'
+const inboxName = 'Slack-Inbox-Name'
 
-const subNavItems: SubNavItem[] = [
-  { id: 'members', label: 'Members', icon: 'user' },
-  { id: 'channels', label: 'Slack Channels', icon: 'hashnumber' },
-  { id: 'chat-apps', label: 'Connected Chat Apps', icon: <span className="sub-nav__asset-icon" style={{ ['--icon-url' as string]: `url("${chatAppsNavIcon}")` }} aria-hidden="true" /> },
-  { id: 'rules', label: 'Conversation Rules', icon: 'massage' },
-  { id: 'auto-assignment', label: 'Auto Assignment', icon: 'assigned' },
-  { id: 'sla', label: 'SLA', icon: 'sla' },
-  { id: 'custom-fields', label: 'Custom Fields', icon: 'clipbord' },
-  { id: 'csat', label: 'CSAT', icon: 'csat' },
-]
+const maskIcon = (url: string) => <span className="sub-nav__asset-icon" style={{ ['--icon-url' as string]: `url("${url}")` }} aria-hidden="true" />
+
+/** Before anything is connected the page is "Connections" and sits after CSAT. Once there are connections it becomes "Connected Chat Apps", after Slack Channels. */
+const subNavItems = (filled: boolean): SubNavItem[] => {
+  const page: SubNavItem = filled
+    ? { id: 'chat-apps', label: 'Connected Chat Apps', icon: maskIcon(chatAppsNavIcon) }
+    : { id: 'chat-apps', label: 'Connections', icon: maskIcon(teamsBrand16) }
+  const items: SubNavItem[] = [
+    { id: 'members', label: 'Members', icon: 'user' },
+    { id: 'channels', label: 'Slack Channels', icon: 'hashnumber' },
+    { id: 'rules', label: 'Conversation Rules', icon: 'massage' },
+    { id: 'auto-assignment', label: 'Auto Assignment', icon: 'assigned' },
+    { id: 'sla', label: 'SLA', icon: 'sla' },
+    { id: 'custom-fields', label: 'Custom Fields', icon: 'clipbord' },
+    { id: 'csat', label: 'CSAT', icon: 'csat' },
+  ]
+  items.splice(filled ? 2 : items.length, 0, page)
+  return items
+}
 
 type Props = {
   initialRows?: ChatAppRow[]
   initialModalOpen?: boolean
+  /** The back button in the sub-nav. */
+  onBack?: () => void
+  /** The inbox shown at the top of the sub-nav. */
+  inboxTitle?: string
+  /** Which Slack inbox this is ("slack1"), sent along with the invite so Hiver knows where the conversation belongs. */
+  inboxId?: string
 }
 
-export function ConnectedChatAppsPage({ initialRows = [], initialModalOpen = false }: Props) {
+export function ConnectedChatAppsPage({ initialRows = [], initialModalOpen = false, onBack, inboxTitle = 'Open Observe Support 01', inboxId = 'slack1' }: Props) {
   const [rows, setRows] = useState(initialRows)
   const [modalOpen, setModalOpen] = useState(initialModalOpen)
-  const [selectedId, setSelectedId] = useState<string>()
   const [confirm, setConfirm] = useState<{ kind: ConfirmKind; row: ChatAppRow }>()
   const [resending, setResending] = useState<ChatAppRow>()
-  // Modals opened from the side sheet reuse its overlay, so they only dissolve in.
-  const [fromSheet, setFromSheet] = useState(false)
-  const selected = rows.find((r) => r.id === selectedId)
+  const filled = rows.length > 0
 
   const sendInvite = (invite: InviteDetails) => {
     const row: ChatAppRow = { id: crypto.randomUUID(), customer: invite.customer, emails: summarizeEmails(invite.emails), invitees: invite.emails, channel: invite.channel, displayName: invite.displayName, note: invite.note, status: 'Invited', sentAt: Date.now() }
     // The first invite turns the empty page into the filled one, with the other states alongside.
+    // Outlook shows the email and the sign-in screen prefills the address, so the other demo tabs hear about it here.
+    shareInvite({ inboxId, emails: invite.emails, customer: invite.customer, displayName: invite.displayName, sender: 'Amy', note: invite.note, sentAt: Date.now() }, invite.channel)
     setRows((r) => [row, ...(r.length ? r : sampleRows)])
     setModalOpen(false)
   }
+
+  const onRowAction = (action: RowAction, row: ChatAppRow) => (action === 'resend' ? setResending(row) : setConfirm({ kind: action, row }))
 
   return (
     <div className="chat-apps-page">
       <PageLayout
         variant="admin"
-        nav={<MainNav items={navSampleItems} footerItems={navSampleFooterItems} value="admin" user={{ initial: 'A', name: 'Amy' }} />}
+        nav={<MainNav items={navSampleItems} footerItems={navSampleFooterItems} value="admin" onChange={goToNav} user={{ initial: 'A', name: 'Amy' }} />}
         sidebar={<AdminSidebar sections={adminSampleSections} value="shared-inbox" />}
-        subNav={<SubNav title={inboxName} items={subNavItems} value="chat-apps" />}
+        subNav={<SubNav title={inboxTitle} items={subNavItems(filled)} value="chat-apps" onBack={onBack} />}
       >
         <div className="chat-apps-page__content">
           <header className="chat-apps-page__header">
-            <h1 className="chat-apps-page__title">Connected Chat Apps</h1>
-            <Button variant="primary" size="sm" onClick={() => setModalOpen(true)}>Connect an app</Button>
+            <h1 className="chat-apps-page__title">{filled ? 'Connected Chat Apps' : 'Connections'}</h1>
+            {filled && <Button variant="primary" size="sm" onClick={() => setModalOpen(true)}>Connect an app</Button>}
           </header>
-          {rows.length === 0 ? (
+          {!filled ? (
             <div className="chat-apps-page__empty">
-              <EmptyState icon={<img src={emptyIcon} width={24} height={24} alt="" />} title="No Connected Chat Apps yet" description="Connect a chat app to let customers reach you from the chat apps they use" />
+              <EmptyState
+                icon={<img src={teamsBrand24} width={24} height={24} alt="" />}
+                title="Setup Microsoft Teams connection"
+                description="Invite customers from Microsoft Teams to collaborate on Slack"
+                action={<Button variant="primary" size="sm" onClick={() => setModalOpen(true)}>Setup</Button>}
+              />
             </div>
           ) : (
             <div className="chat-apps-page__body">
-              <p className="chat-apps-page__intro">Customers on other chat apps can reach this <strong>{inboxName}</strong> inbox from where they work.</p>
-              <ChatAppsTable rows={rows} onRowClick={(r) => setSelectedId(r.id)} />
+              <p className="chat-apps-page__intro">Customers on other chat apps can reach this <strong>[{inboxName}]</strong> inbox from where they work.</p>
+              <ChatAppsTable rows={rows} onAction={onRowAction} />
             </div>
           )}
         </div>
       </PageLayout>
-      {selected && (
-        <SideSheet
-          row={selected}
-          onClose={() => setSelectedId(undefined)}
-          onAction={(action) => { setFromSheet(true); return action === 'resend' ? setResending(selected) : setConfirm({ kind: action, row: selected }) }}
-        />
-      )}
       {confirm && (
         <ConfirmModal
           kind={confirm.kind}
-          fromSheet={fromSheet}
           row={confirm.row}
           onCancel={() => setConfirm(undefined)}
           onConfirm={() => {
@@ -104,7 +120,6 @@ export function ConnectedChatAppsPage({ initialRows = [], initialModalOpen = fal
       {resending && (
         <ResendModal
           row={resending}
-          fromSheet={fromSheet}
           onCancel={() => setResending(undefined)}
           onSend={(emails, note) => {
             setRows((all) => all.map((r) => (r.id === resending.id ? { ...r, invitees: emails, emails: summarizeEmails(emails), note, status: 'Invited', lastAction: 'resent', sentAt: Date.now() } : r)))

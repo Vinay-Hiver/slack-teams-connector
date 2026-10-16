@@ -8,7 +8,7 @@
 .connect-modal__group { display: flex; flex-direction: column; gap: 12px; }
 .connect-modal__invite { display: flex; flex-direction: column; gap: 12px; }
 .connect-modal__link { display: flex; align-items: center; gap: 4px; align-self: flex-start; padding: 0; border: 0; background: none; color: var(--primarySurfaceDefault); font: var(--fontWeightMedium) 14px/20px var(--fontFamily); cursor: pointer; }
-.connect-modal__actions { display: flex; flex: 1; align-items: center; justify-content: space-between; }
+.connect-modal__actions { display: flex; flex: 1; align-items: center; justify-content: flex-end; }
 .connect-modal__buttons { display: flex; gap: 16px; }
 .connect-modal__actions .hot-btn { height: 36px; }
 /* The email tags field starts one line tall and grows as tags wrap */
@@ -17,3 +17,7 @@
 .connect-modal__emails .hot-field__tag-input { flex: 1 1 120px; min-width: 120px; }
 
 .connect-modal__overlay > .hot-modal { animation: dissolve-in var(--motionDuration) var(--motionEase) both; }
+
+/* One form. Keeps the modal's 20px rhythm. */
+/* z-index keeps the open channel list above the footer buttons, and the fade does not fill forwards so it leaves no stacking layer behind. */
+.connect-modal__step-body { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 20px; animation: dissolve-in 150ms var(--motionEase) backwards; }
